@@ -18,7 +18,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y man-db manpages",
+	"postCreateCommand": "sudo unminimize",
 	// Configure tool-specific properties.
 	// "customizations": {},
 
