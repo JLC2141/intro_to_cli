@@ -6,3 +6,5 @@ RUN yes | DEBIAN_FRONTEND=noninteractive unminimize \
         manpages \
         manpages-dev \
     && rm -rf /var/lib/apt/lists/*
+
+RUN useradd -m -s /bin/bash vscode
