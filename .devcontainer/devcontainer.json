@@ -7,8 +7,9 @@
 	"features": {
 		"ghcr.io/devcontainers/features/copilot-cli:1": {},
 		"ghcr.io/wxw-matt/devcontainer-features/command_runner:0": {},
-		"ghcr.io/devcontainers-extra/features/apt-packages:1": {}
-	}
+		"ghcr.io/devcontainers-extra/features/apt-packages:1": {},
+		"ghcr.io/devcontainers-extra/features/apt-get-packages:1": {}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -17,8 +18,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
-
+	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y man-db manpages",
 	// Configure tool-specific properties.
 	// "customizations": {},
 
