@@ -1,0 +1,229 @@
+#Note: This is a mock log file for viewing purposes
+
+============================================================
+BIOINFORMATICS PIPELINE LOG
+Run ID: BPX_2026_04_01_001
+Date: 2026-04-01
+User: researcher01
+Samples: 10 paired-end datasets
+============================================================
+
+[00:00:01] Starting pipeline execution...
+
+Samples detected:
+sample01_R1.fastq.gz / sample01_R2.fastq.gz
+sample02_R1.fastq.gz / sample02_R2.fastq.gz
+sample03_R1.fastq.gz / sample03_R2.fastq.gz
+sample04_R1.fastq.gz / sample04_R2.fastq.gz
+sample05_R1.fastq.gz / sample05_R2.fastq.gz
+sample06_R1.fastq.gz / sample06_R2.fastq.gz
+sample07_R1.fastq.gz / sample07_R2.fastq.gz
+sample08_R1.fastq.gz / sample08_R2.fastq.gz
+sample09_R1.fastq.gz / sample09_R2.fastq.gz
+sample10_R1.fastq.gz / sample10_R2.fastq.gz
+
+
+------------------------------------------------------------
+STEP 1: FASTQC QUALITY CONTROL
+------------------------------------------------------------
+Command:
+fastqc sample**_R1.fastq.gz sample**_R2.fastq.gz -o fastqc_reports/
+
+Processing sample01...
+  - Per base quality: PASS
+  - Adapter content: WARN
+Processing sample02...
+  - Per base quality: PASS
+  - Adapter content: PASS
+Processing sample03...
+  - Per base quality: PASS
+  - Adapter content: WARN
+Processing sample04...
+  - Per base quality: PASS
+  - Adapter content: PASS
+Processing sample05...
+  - Per base quality: WARN
+  - Adapter content: WARN
+Processing sample06...
+  - Per base quality: PASS
+  - Adapter content: PASS
+Processing sample07...
+  - Per base quality: PASS
+  - Adapter content: WARN
+Processing sample08...
+  - Per base quality: PASS
+  - Adapter content: PASS
+Processing sample09...
+  - Per base quality: WARN
+  - Adapter content: WARN
+Processing sample10...
+  - Per base quality: PASS
+  - Adapter content: PASS
+
+Output directory:
+fastqc_reports/
+
+Generated reports:
+sample01_fastqc.html
+sample02_fastqc.html
+...
+sample10_fastqc.html
+
+[00:00:10] FASTQC completed for all samples.
+
+------------------------------------------------------------
+STEP 2: FASTP TRIMMING
+------------------------------------------------------------
+Command:
+fastp -i sample##_R1.fastq.gz -I sample##_R2.fastq.gz \
+      -o trimmed/sample##_trimmed_R1.fastq.gz -O trimmed/sample##_trimmed_R2.fastq.gz \
+      --detect_adapter_for_pe \
+      --thread 8 \
+      --html fastp_report.html
+
+[00:00:12] Adapter trimming enabled.
+[00:00:14] Quality filtering threshold: Q30
+[00:00:15] Running FASTP...
+
+Sample: sample01
+  Reads in: 5,120,000
+  Reads out: 4,860,000 (94.9%)
+  Bases trimmed: 12,300,000
+
+Sample: sample02
+  Reads in: 4,980,000
+  Reads out: 4,750,000 (95.4%)
+  Bases trimmed: 10,850,000
+
+Sample: sample03
+  Reads in: 5,300,000
+  Reads out: 5,010,000 (94.5%)
+  Bases trimmed: 13,100,000
+
+Sample: sample04
+  Reads in: 4,750,000
+  Reads out: 4,600,000 (96.8%)
+  Bases trimmed: 9,200,000
+
+Sample: sample05
+  Reads in: 5,400,000
+  Reads out: 4,920,000 (91.1%)
+  Bases trimmed: 15,800,000
+
+Sample: sample06
+  Reads in: 5,050,000
+  Reads out: 4,900,000 (97.0%)
+  Bases trimmed: 8,900,000
+
+Sample: sample07
+  Reads in: 5,200,000
+  Reads out: 4,880,000 (93.8%)
+  Bases trimmed: 12,900,000
+
+Sample: sample08
+  Reads in: 4,900,000
+  Reads out: 4,780,000 (97.6%)
+  Bases trimmed: 7,600,000
+
+Sample: sample09
+  Reads in: 5,600,000
+  Reads out: 5,000,000 (89.3%)
+  Bases trimmed: 18,200,000
+
+Sample: sample10
+  Reads in: 5,100,000
+  Reads out: 4,920,000 (96.5%)
+  Bases trimmed: 9,700,000
+
+Average read retention: ~94.6%
+
+Output files:
+trimmed/sample01_trimmed_R1.fastq.gz
+trimmed/sample01_trimmed_R2.fastq.gz
+...
+trimmed/sample10_trimmed_R1.fastq.gz
+trimmed/sample10_trimmed_R2.fastq.gz
+
+Reports:
+fastp_reports/sample01.html
+fastp_reports/sample02.html
+...
+fastp_reports/sample10.html
+
+[00:00:21] FASTP completed for all samples.
+
+------------------------------------------------------------
+STEP 3: SNIPPY-MULTI (VARIANT CALLING SETUP)
+------------------------------------------------------------
+Command:
+snippy-multi input.tab --ref Reference.gbk --cpus 16 > runme.sh
+sh ./runme.sh 
+
+[00:00:23] Generating Snippy command script...
+[00:00:24] 10 samples detected in input.tab
+[00:00:24] Reference genome: Reference.gbk
+
+Output:
+[00:00:25] snippy-multi completed.
+
+------------------------------------------------------------
+STEP 4: SNIPPY-CLEAN
+------------------------------------------------------------
+Command:
+snippy-clean_full_aln core.full.aln > clean.full.aln
+
+[00:05:32] Removing low-quality and ambiguous regions...
+[00:05:33] Sites removed: 12,450
+[00:05:33] Remaining high-quality sites: 45,210
+
+Output:
+clean.full.aln
+
+[00:05:34] snippy-clean completed.
+
+------------------------------------------------------------
+STEP 5: SNP-SITES
+------------------------------------------------------------
+Command:
+snp-sites -c clean.full.aln > snp-sites_constant_sites.txt
+
+[00:05:36] Extracting SNP sites from alignment...
+[00:05:36] Total SNP sites identified: 3,875
+
+Output:
+snp-sites_constant_sites.txt
+
+[00:05:37] snp-sites completed.
+
+------------------------------------------------------------
+STEP 6: IQ-TREE PHYLOGENETIC ANALYSIS
+------------------------------------------------------------
+Command:
+iqtree -s core.full.aln -fconst snp-sites_constant_sites.txt -m GTR+G -bb 1000 -nt AUTO
+
+[00:05:40] Model selection: GTR+G
+[00:05:41] Alignment contains 10 taxa and 3,875 sites
+[00:05:42] Performing maximum likelihood tree inference...
+
+[00:06:30] Log-likelihood of best tree: -12543.221
+[00:06:45] Ultrafast bootstrap analysis (1000 replicates)...
+
+[00:08:10] Bootstrap convergence achieved.
+
+Output:
+core_snps.aln.treefile
+core_snps.aln.iqtree
+core_snps.aln.log
+
+[00:08:12] IQ-TREE completed.
+
+------------------------------------------------------------
+PIPELINE SUMMARY
+------------------------------------------------------------
+Total runtime: 8 minutes 12 seconds
+Samples processed: 10
+Final SNP alignment: clean.full.aln
+Phylogenetic tree: core_snps.aln.treefile
+
+[00:08:12] Pipeline completed successfully.
+============================================================
