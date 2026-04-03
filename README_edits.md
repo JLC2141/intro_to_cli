@@ -66,7 +66,8 @@ And be familiar with concepts and best practices such as:
 
 ## 💻 Getting Started in GitHub Codespaces
 
-> [!NOTE] In order to use GitHub Codespaces, you need a GitHub account. Make one for free [here](https://github.com/).
+> [!NOTE] 
+> In order to use GitHub Codespaces, you need a GitHub account. Make one for free [here](https://github.com/).
 
 
 #### Step 1: Navigate to the GitHub repository containing this introductory CLI module, [here](https://github.com/JLC2141/intro_to_cli).
@@ -79,17 +80,21 @@ And be familiar with concepts and best practices such as:
 
 ![GitHub repo to start codespace](images/starting_codespace.png)
 
-It will take a few mintues to set up your codespace. Once it's ready, you should see the following:
+It will take a few minutes to set up your codespace. Once it's ready, you should see the following:
 
 ![Codespace environment](images/codespace_env.png)
 
-Put simply, GitHub codespaces creates a virtual Linux environment with Visual Studio Code (VS Code) editor:
+Put simply, GitHub codespaces creates a virtual Linux environment with the Visual Studio Code (VS Code) editor:
 
 More on [codespaces](https://docs.github.com/en/codespaces/about-codespaces/what-are-codespaces) and [VS Code](https://code.visualstudio.com/docs/editor/whyvscode), if interested. 
 
-Put more simply, anyone who creates a codespace from this repo will be working within the same exact environment on a similarly simulated computer, putting us all at the same starting point.
+Put more simply, anyone who creates a codespace from this repo will be working within the same exact environment on a similarly simulated computer, putting us all at the same starting point for this tutorial.
 
-Notes about why it would be more difficult to do this locally, windows vs mac, WSL vs Mac terminal? Likely leave out
+> [!NOTE]
+> GitHub codespaces will be the same environment we use to build and run bioinformatics pipelines during the in-person workshop
+> But, there are other applications on your local computer where you can run these commands, as well. For example [terminal](https://en.wikipedia.org/wiki/Terminal_%28macOS%29) on macOS or [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) on Windows.
+> Plus, with codespaces, we can pre-install everything in a reproducible environment before the so you can get right to coding! 
+
 
 In the orange box, you'll see the file explorer with the following directory structure:
 
@@ -155,7 +160,7 @@ Back to the purple box- that "$" in the terminal window is a prompt telling us t
 > [!NOTE]
 > This is just a test space to learn from.
 > Anything you perform in this environment is self-contained and will be deleted at the end of the session.
-> Which also means you're free to use this codespace on your own time to explore CLI funtionality.
+> Which also means you're free to use this codespace on your own time to explore CLI functionality.
 
 
 ## 📋 CLI command: ls
@@ -186,7 +191,7 @@ Then mention other useful flag such as -S (sort by size) and -t (sort by time)
 
 * Note man works with other commands we'll learn, too
 
-## 🎯CLI command: pwd
+## 🎯 CLI command: pwd
 
 ![pwd](images/pwd.png)
 
@@ -226,15 +231,13 @@ NEED TO ADD CONCEPTS
 
 Touch with relative path
 
-hidden answer
-
+<details>
+<summary>Reveal solution, here</summary>
 ![touch_rel](images/touch_rel.png)
 
+</details>
 
 Attempt move with new relative path
-
-
-
 
 
 ## ↔️ CLI command: mv
@@ -442,6 +445,8 @@ Add the force (-f) flag in combination with the recursive (-r) flag to remove pr
 
 We will now explore various techniques to view a file. 
 
+### cat 
+
 The first is cat, short for concatenate. This will read and write the entire contents of a file to your terminal if you type:
 
 ```
@@ -454,7 +459,10 @@ For example, let's look at the contents of the log.txt file:
 
 You'll notice this is only an image of the end of the file because it's a relatively long file. You can scroll up and down to navigate the contents.
 
->NOTE: This is just a mock log file of bioinformatics pipeline
+> [!NOTE]
+> This is just a mock log file of bioinformatics pipeline
+
+### less
 
 However, sometimes files may be thousands of lines long and you want more fine-tuned control of the navigation. For this we can use the command, less.
 
@@ -462,11 +470,68 @@ However, sometimes files may be thousands of lines long and you want more fine-t
 less logfile.txt
 ```
 
+![less](images/less.png)
 
+In contrast to cat, you'll notice the less command opens a full-screen terminal pager window that does not display the entire file. You start at the beginning of the file and can navigate with scroll. You can also search key words, for example, by entering the following: 
+
+```
+/STEP 4
+```
+
+For search results below your current location in the file or:
+
+```
+?BIOINFORMATICS
+```
+For search results above your current location in the file.
+
+To exit terminal pager window, just type: 
+
+```
+q
+```
+
+### head
+
+Sometimes, you just want to view the first part of a file. For example, the beginning of a log file to view summary information about a run. 
+
+For this, we use the head command
+
+```
+head logfile.txt
+```
+
+![head](images/head.png)
+
+By default, the head command will display the first 10 lines of your file.
+
+If you want to display more lines, the first 20 lines for example, use the -n flag followed by the number of lines:
+
+```
+head -n 20 log.txt
+```
+
+![head_n](images/head_n.png)
+
+And now we've displayed the first 20 lines of the log file.
+
+### tail
+
+Other times, you may want to only view the end of file to view, for example, to make sure that your bioinformatics pipeline completed successfully. For this, we use the tail command: 
+
+```
+tail log.txt
+```
+
+![tail](images/tail.png)
+
+> [!NOTE]
+> Tail also works with the -n # of lines command as shown with the head command.
 
 
 ## 📝 CLI command: nano
 
+![nano_start](images/nano_start.png)
 
 ## 🏃 CLI command: bash
 
