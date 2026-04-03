@@ -531,7 +531,7 @@ tail log.txt
 ![tail](images/tail.png)
 
 > [!NOTE]
-> Tail also works with the -n # of lines command as shown with the head command.
+> Tail also works with the -n # of lines flag as shown with the head command.
 
 
 ## 📝 CLI command: nano
@@ -546,9 +546,9 @@ We can start with the command and the name of the file we want to create.
 nano test_file.txt
 ```
 
-Press the enter key ↩
-
 ![nano_start](images/nano_start.png)
+
+Press the enter key ↩
 
 This initiates the editor. 
 
@@ -705,7 +705,7 @@ else
 fi
 ```
 
-I encourage you make use of the AI agent to better understand why this is a better solution. Then, really challenge yourself by trying to understand what how this "if statement" works and then implement and run it in your script.
+I encourage you make use of the AI agent to better understand why this is a better solution. Then, really challenge yourself by trying to understand how this "if statement" works and then implement and run it in your script.
 
 
 
