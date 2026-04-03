@@ -84,7 +84,7 @@ It will take a few minutes to set up your codespace. Once it's ready, you should
 
 ![Codespace environment](images/codespace_env.png)
 
-Put simply, GitHub codespaces creates a virtual Linux environment with the Visual Studio Code (VS Code) editor:
+Put simply, GitHub codespaces creates a virtual Linux environment and uses the Visual Studio Code (VS Code) editor as the primary interface.
 
 More on [codespaces](https://docs.github.com/en/codespaces/about-codespaces/what-are-codespaces) and [VS Code](https://code.visualstudio.com/docs/editor/whyvscode), if interested. 
 
@@ -215,6 +215,10 @@ Go back to the original directory
 NEED TO ADD CONCEPTS
 
 * Relative paths
+
+Concept check:
+Why doesn't cd /resources work? Because it's looking for resources at the root. 
+
 * tabbing out
 * cd home
 
@@ -381,6 +385,7 @@ You:
 
 ![rm_dir_loc](images/rm_dir_loc.png)
 
+
 Yea you, your time is up. We know better now than to name our files and directories with a space
 
 > [!TIP]
@@ -531,11 +536,193 @@ tail log.txt
 
 ## 📝 CLI command: nano
 
+Nano is a text editor for Linux. Think of it like the notepad app you may be familiar with: 
+
+![notepad](images/notepad.png)
+
+We can start with the command and the name of the file we want to create.
+
+```
+nano test_file.txt
+```
+
+Press the enter key ↩
+
 ![nano_start](images/nano_start.png)
+
+This initiates the editor. 
+
+![nano](images/nano.png)
+
+Add some notes to the first line. For example:
+
+![nano_edit](images/nano_edit.png)
+
+
+Now, let's try to save our new file. Press:
+
+```
+ctrl + x
+```
+
+To initiate exit. 
+
+![nano_confirm](images/nano_confirm.png)
+
+The editor prompt asks if we want to save. Press:
+
+```
+y
+```
+
+The final prompt allows us to name our file. 
+![nano_save](images/nano_save.png)
+
+We don't need to change the name. Save the file by pressing the enter key ↩ and exit the editor. 
+
+Verify that your file has been created.
+
+![nano_final](images/nano_final.png)
+
+And view the final with any method you prefer.
+
+![nano_view](images/nano_view.png)
+
+Success! 
+
+> [!NOTE]
+> You can also edit files that have already been created
+> Try editing the test_file.txt again, add a second line, save, and view the file
+
+Where the nano editor really shines is when we want to create scripts to automate processes, as we'll see in the next section. 
 
 ## 🏃 CLI command: bash
 
-* Hash for notes
+Why create a script? We like automation for reproducibility and efficiency, and it just makes sense for throughput when you're going to be repeating an analysis on a regular basis.
+
+A script is already in the intro_to_cli/ directory, aptly named, script.sh.
+
+Let's start the script with the bash command:
+
+```
+bash script.sh
+```
+
+![bash](images/bash.png)
+
+Notice in the image above that I first looked at the contents of the script prior to running the script. We see that it was a one line command to create a test_dir/ directory. 
+
+The command line prompt "$" will appear on a new line once the script is complete. However, we can also add another command within the script to reassure us the script completed. 
+
+> [!NOTE]
+> The .sh extension is just convention. Other file extensions are also compatible with running the bash command 
+> But, imagine one day someone will look at your code and try to understand how it functions
+> Coding standards make reading code more streamlined and so the .sh extension tells others to look there for automated scripts
+
+
+**Concept Check**
+
+Take some time to re-edit the script.sh files to achieve the following objectives:
+
+* Make a comment where they should take advantage of vs code text editor. Click on the file and use the VS code
+
+1) Remove the first line
+2) Make a new line that moves the test_file.txt into the results/ directory
+3) Then, using relative paths, list the contents of test_file.txt in long format and make the output human-readable
+4) Provide a message at the end of the script that says the script is completed
+
+>[!TIP]
+> Start each command on a new line
+
+<details>
+<summary>Reveal solution, here</summary>
+
+```
+mv test_file.txt results
+ls -lh results/test_file.txt
+echo "Script completed"
+```
+
+And showing this on the CLI:
+
+![bash_script](images/bash_script.png)
+
+> [!NOTE]
+> Notice the hashed (#) lines in the image (orange arrows)
+> The hash prevents the lines from being read and executed in the script
+> Use hash lines to provide a human-digestible comment on what your code is doing
+
+</details>
+
+It's okay if you didn't get last line. The point of this exercise is that you're not always going to have me. So I want to take this moment to introduce you to someone much smarter than me:
+
+![ai_chat](images/ai_chat.png)
+
+On the right in the green box is [GitHub Copilot](https://docs.github.com/en/copilot/get-started/what-is-github-copilot), an AI coding assistant.
+
+**If you do not see this window, then click on the "toggle secondary side bar" icon (orange arrow)**
+
+
+And then set the following preferences: 
+
+1. Set the agent to "Ask"
+
+![ai_set_agent](images/ai_set_agent.png)
+
+Agent will try to change your code automatically while agent will just provide suggestions.
+
+2. Set the model to Claude
+
+![ai_set_model](images/ai_set_model.png)
+
+The model is like choosing you flavor of an AI assistant.
+
+You should now see the following configuration: 
+
+![ai_config](images/ai_config.png)
+
+Now, put AI to use!
+
+![ai_prompt](images/ai_prompt.png)
+
+Things to note: 
+
+1) I removed the echo command that I originally had from script.sh
+2) Click on script.sh in the file explorer pane to add the file to the chat. Now, when you ask the AI assistant your question, it will answer it in the context of the contents of this file you specified.
+3) Provide question to the AI agent and enter
+
+
+> [!NOTE]
+> This echo line works in the sense the it outputs a message, but it's really not an optimal solution
+> A much better solution would be
+
+```
+if [ $? -eq 0 ]; then
+    echo "Script completed successfully!"
+else
+    echo "Script failed!"
+    exit 1
+fi
+```
+
+I encourage you make use of the AI agent to better understand why this is a better solution. Then, really challenge yourself by trying to understand what how this "if statement" works and then implement and run it in your script.
+
+
+
+
+
+
 ## 📨 CLI command: wget
+or save for part II?
+
+Part II
+* wget
+* for loop
+* bash variable
+* cat >
+* line breaks with a command
+    * ls -l \
+         -h \
+        results/test_file.txt
 
 
