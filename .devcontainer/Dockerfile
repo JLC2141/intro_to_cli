@@ -7,6 +7,7 @@ RUN yes | DEBIAN_FRONTEND=noninteractive unminimize \
         manpages \
         manpages-dev \
         less \
+        nano \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up a non-root user for development
