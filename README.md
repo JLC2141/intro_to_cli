@@ -171,7 +171,7 @@ Before we start, take note of where we are currently located in the file system:
 
 ![loc](images/loc.png)
 
-**We are in a directory called intro_to_cli. I will refer to this directory throughout the tutorial.**
+**We are in a directory called intro_to_cli. I will refer to this directory throughout the tutorial as the base working directory.**
 
 Our first command is ls, or list:
 
@@ -471,7 +471,7 @@ Represents the current working directory. It's like a way of saying, "here". It'
 
 ### Concept checks and tips
 
-1) Within intro_to_cli as your current working directory, why doesn't the following work?
+#### 1) Within intro_to_cli as your current working directory, why doesn't the following work?
 
 ```
 cd /resources 
@@ -493,7 +493,7 @@ ls /
 </details>
 
 
-2) You traverse multiple directories at a time using the cd command. For example, say our current working directory is intro_to_cli and we want to navigate into the documentation directory that's located inside of the resources directory. We could perform the cd command is two consecutive steps:
+#### 2) You can traverse multiple directories at a time using the cd command. For example, say our current working directory is intro_to_cli and we want to navigate into the documentation directory that's located inside of the resources directory. We *could* perform the cd command in two consecutive steps:
 
 ```
 cd resources
@@ -519,15 +519,257 @@ cd resources/documentation
 
 ![cd_nav](images/cd_nav.png)
 
+The same concept applies for navigating back up directories, as also shown in the image:
 
-* tabbing out
-* cd home
+```
+cd ../..
+```
 
+**You can navigate anywhere you want with one command if you know the relative path.** 
+
+#### 3) Type paths faster by tabbing out for auto-completion
+
+Change into the resources directory:
+
+```
+cd resources
+```
+
+Now, say we wanted to change into the documentation directory. Start by just typing the following: 
+
+```
+cd d
+```
+
+And then press the tab key. What do you notice? The path should have autocompleted to:
+
+```
+cd documentation/
+```
+
+Tabbing makes path navigation faster. Use it so you don't have to type everything out. 
+
+Now, change to the intro_to_cli directory. And let's try tabbing out to achieve the following path:
+
+```
+cd resources/documentation
+```
+
+As we started off before, start by typing the following:
+
+```
+cd r
+```
+
+Then press tab. What happened this time?
+
+![tab_re](images/tab_re.png)
+
+We only see "re" and if we try to hit tab again, it almost feels like it's stuck, right?
+
+Attempt to hit tab twice:
+
+![tab_dir](images/tab_dir.png)
+
+Can you work out what the issue is, here?
+
+<details>
+<summary>Reveal solution, here</summary>
+There are 3 unique directories that all start with 're' so autocomplete can't complete when there are technically 3 options we could navigate into.
+
+We need to specify enough unique characters so that tab can autocomplete.
+
+In this case, type the following:
+
+```
+cd reso
+```
+
+And then hit tab. And then you should see:
+
+```
+cd resources/
+```
+
+Now continue typing
+
+```
+cd resources/d
+```
+
+Now hit tab:
+
+```
+cd resources/documentation
+```
+
+</details>
+<br>
+
+
+**Using relative paths and tabbing out will really increase your efficiency on the command line. I suggest using both of these techniques moving forward as we learn other commands**
+
+#### 4) The home directory
+
+Enter the following command:
+
+```
+cd
+```
+![cd_home](images/cd_home.png)
+
+What do we see? We have been automatically navigated to a home directory:
+
+```
+/home/vscode
+```
+
+Where vscode is your assigned user name in the codespace. This is how Linux sets up home directories by default. See more [here](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s08.html) if you want to learn more about the home directory.
+
+In the image (orange box), you'll also notice that the path on the command prompt is a tilde, ~. This is also default Linux behavior. The ~ is the same as specifying your home directory path meaning:
+
+```
+cd ~
+```
+
+![cd_tilde](images/cd_tilde.png)
+
+Navigates you to the same location as just typing:
+
+```
+cd
+``` 
+
+I only mean to cover this topic because you may accidentally enter cd and be navigated away from our base working directory (/workspaces/intro_to_cli).
+
+Don't panic! With the knowledge you gained so far, how would you navigate back to the base working directory?
+
+<details>
+<summary>Reveal solution, here</summary>
+
+```
+cd /workspaces/intro_to_cli
+```
+
+Remember, this time we needed to provide an absolute path with the forward slash at the beginning because the most common parent directory between:
+
+```
+/home/vscode 
+```
+
+and
+
+```
+/workspaces/intro_to_cli
+```
+is the root directory.
+
+</details>
+
+
+**Moving forward, I will use the term base directory to refer to the intro_to_cli directory for purposes of simplicity.**
 
 ## 📁 CLI command: mkdir
 
+Okay, that was a lot but you're doing great! Let's keep rolling with the next command, mkdir or **m**a**k**e **dir**ectory.
+
+Confirm that you are in the base directory and make a new directory called "test_dir":
+
+```
+mkdir test_dir
+```
+
 ![mkdir](images/mkdir.png)
 
+After this command I ran ls to look at the contents and we do indeed see the creation of a new directory called "test_directory". You should also see it on your file explorer pane on the left side bar (orange arrow).
+
+So this brings us to our discussion on naming files and directories. Notice there was another directory already present in the base directory named 'test dir'. 
+
+This is also a directory with the only difference being that a space was added in the naming scheme of that directory while an underscore was added in the directory we just created. 
+
+Attempt to change directory into the test_dir directory containing the underscore:
+
+```
+cd test_dir
+```
+
+Okay, now navigate back to the base directory,
+
+<details>
+<summary>Recall if you need help, here</summary>
+```
+cd ..
+```
+</details>
+
+And attempt to change directory into the 'test dir' directory with a space. There are two ways:
+
+```
+cd test\ dir/
+```
+
+or
+
+```
+cd 'test dir'
+```
+
+![nav_spaces](images/nav_spaces.png)
+
+
+Both work but I have to admit, the solutions to navigate into a directory with spaces are both pretty ugly. Directories and files with spaces in the name can complicate your ability to specify a path and will cause unnecessary headaches in your coding scripts.
+
+**Abide by best practices and always place an underscore or a hyphen between words when naming a file or directory. In addition, stick to lowercase, only. The naming convention for hyphen delimiters and underscore delimiters is called kebab-case and snake_case, respectively.** 
+
+**Another naming convention is called camelCase, where the first word is lowercase, and first letter of subsequent words are capitalized, like this: myDirectoryName.**
+
+Personally, I prefer snake case because I don't like capitalization in my naming.
+
+Okay, return to your base directory. Attempt to create a new directory called scripts within a directory called bin:
+
+```
+mkdir bin/scripts
+```
+
+![mkdir_fail](images/mkdir_fail.png)
+
+Oops! Looks like this returned an error that no such file or directory exists. Can you understand why this didn't work?
+
+<br>
+
+<details>
+<summary>Reveal solution</summary>
+This pertains to the bin directory. The scripts directory could not be made because the bin directory was not present in the first place. 
+</details>
+
+<br>
+
+Let's view our handy-dandy manual for mkdir and see if we can find some help:
+
+```
+man mkdir
+```
+
+![mkdir_man](images/mkdir_man.png)
+
+Now we're talking! The p flag is exactly what we need. Because bin is the parent directory of scripts, the p flag will make sure to create this parent directory if not already present.
+
+Knowing this information, take a moment to try to create the scripts directory as we attempted before, except this time also use the p flag.
+
+<br>
+
+<details>
+<summary>Reveal solution</summary>
+
+```
+mkdir -p bin/scripts
+```
+
+![mkdir_rel](images/mkdir_rel.png)
+
+Voilà, it worked! 
+</details>
+<br>
 
 ## 📃 CLI command: touch
 
@@ -538,6 +780,7 @@ Touch with relative path
 
 <details>
 <summary>Reveal solution, here</summary>
+
 ![touch_rel](images/touch_rel.png)
 
 </details>
@@ -714,6 +957,10 @@ And we see that the directory is gone. The directory was empty, but it doesn't m
 
 Okay, let's try to remove a directory with contents in it. Let's remove the test_dir/ directory:
 
+```
+rm -r test_dir
+```
+
 ![rm_dir_r_can](images/rm_dir_r_can.png)
 
 Okay, I give up. I cancelled the command with:
@@ -743,7 +990,7 @@ Add the force (-f) flag in combination with the recursive (-r) flag to remove pr
 >```
 >rm -rf /
 >```
-> ⚠️ **Caution:** Because this would delete everything starting at the root directory...so your whole computer.<br>
+> ⚠️ **Caution:** Because this would delete everything starting at the root directory...so all contents on your computer.<br>
 >There's typically a built-in safeguard if you try to remove from the root but it's best not to use that command at all
 
 
@@ -917,13 +1164,13 @@ The command line prompt "$" will appear on a new line once the script is complet
 
 > [!NOTE]
 > The .sh extension is just convention. Other file extensions are also compatible with running the bash command 
-> But, imagine one day someone will look at your code and try to understand how it functions
+> But, imagine one day someone will look at your code and try to understand how it functions.
 > Coding standards make reading code more streamlined and so the .sh extension tells others to look there for automated scripts
 
 
-**Concept Check**
+**Final concept check challenge**
 
-Take some time to re-edit the script.sh files to achieve the following objectives:
+Take some time to re-edit the script.sh file to achieve the following objectives:
 
 * Make a comment where they should take advantage of vs code text editor. Click on the file and use the VS code
 
@@ -935,6 +1182,7 @@ Take some time to re-edit the script.sh files to achieve the following objective
 >[!TIP]
 > Start each command on a new line
 
+<br>
 <details>
 <summary>Reveal solution, here</summary>
 
@@ -954,6 +1202,8 @@ And showing this on the CLI:
 > Use hash lines to provide a human-digestible comment on what your code is doing
 
 </details>
+
+<br>
 
 It's okay if you didn't get last line. The point of this exercise is that you're not always going to have me. So I want to take this moment to introduce you to someone much smarter than me:
 
@@ -994,8 +1244,8 @@ Things to note:
 
 
 > [!NOTE]
-> This echo line works in the sense the it outputs a message, but it's really not an optimal solution
-> A much better solution would be
+> This echo line works in the sense that it outputs a message, but it's really not an optimal solution.
+> A much better solution would be:
 
 ```
 if [ $? -eq 0 ]; then
@@ -1009,7 +1259,9 @@ fi
 I encourage you make use of the AI agent to better understand why this is a better solution. Then, really challenge yourself by trying to understand how this "if statement" works and then implement and run it in your script.
 
 
+### Notes
 
+* You will not need to memorize all of these commands in preparation for the workshop.
 
 
 
