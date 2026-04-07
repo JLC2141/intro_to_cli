@@ -173,7 +173,7 @@ Before we start, take note of where we are currently located in the file system:
 
 **We are in a directory called intro_to_cli. I will refer to this directory throughout the tutorial as the base working directory.**
 
-Our first command is ls, or list:
+Our first command is `ls`, or **l**i**s**t:
 
 ```
 ls
@@ -187,7 +187,7 @@ This lists the contents within the intro_to_cli directory and lists the exact sa
 
 <br>
 
->[!NOTE] <br>
+> [!NOTE] <br>
 > Directories and folders are used interchangeably but bioinformaticians generally use the term directories. I will use that terminology throughout this tutorial. 
 
 <br>
@@ -203,7 +203,7 @@ We just added what is known as a flag to the list command. **Flags are used to m
 
 <br>
 
->[!NOTE] <br>
+> [!NOTE] <br>
 > Terminology ramble again: I will use the term "flag" but you may also come across other terms such as an "argument" or an "option".
 > You'll also see another type of flag invocation when we get to bioinformatic pipelines: the double dash prefix, "--", uses a multi-character flag that is more descriptive. For example --outdir would be flag specifying the directory where results are output.
 
@@ -229,7 +229,7 @@ ls -lh
 
 Ah, much better! The h flag outputs file/directory size in human-readable format. We see, for example, that the resources directory is 4.0K or 4 kilobytes. Larger files/directories will have a M or G designation for megabytes or gigabytes, respectively. 
 
->[!TIP] <br>
+> [!TIP] <br>
 > Other useful flags for the list command include -S (sort by size) and -t (sort by time)
 > Other commands we'll learn throughout this tutorial also have flags
 
@@ -301,12 +301,10 @@ However, if you ever want to cancel your current prompt and generate a new promp
 Ctrl+C
 ```
 
-At the same time.
-
 
 ## 📕 CLI command: man
 
-Now, you might have asked yourself how did I know this awesome information about the flags for list. Over time, you may memorize some useful flags and there's always google. But there's also a command that we can use to view the command manual, or man, for short. Enter the following to view the manual for the list command: 
+Now, you might have asked yourself how did I know this awesome information about the flags for list. Over time, you may memorize some useful flags and there's always google. But there's also a command that we can use to view the command manual, or `man`, for short. Enter the following to view the manual for the list command: 
 
 ```
 man ls
@@ -358,7 +356,7 @@ pwd
 
 ![pwd](images/pwd.png)
 
-This is the **p**rint **w**orking **d**irectory command and is used to print where you are currently working within the file system. Common terminology refers to this as a path, the unique location of file or directory. 
+This is the **p**rint **w**orking **d**irectory, or `pwd` command, and is used to print where you are currently working within the file system. Common terminology refers to this as a path, the unique location of file or directory. 
 
 pwd will always print the **absolute** path, starting at the root "/" directory.
 
@@ -410,7 +408,11 @@ In summary:
 * /Paths/are/provided/with/forward/slashes/
 * Remember the difference between **absolute** and **relative** because we will make use of paths from here on out.
 
-Challenge: With what we learned so far, can you use a relative path to list all the contents within resources to reveal what is inside those directories?
+<br>
+
+> **Challenge: With what we learned so far, can you use a relative path to list all the contents within resources to reveal what is inside those directories?**
+
+<br>
 
 <details>
 <summary>Reveal solution, here</summary>
@@ -422,9 +424,9 @@ And you should see:
 
 ![list_res_wc](images/list_res_wc.png)
 
-
 </details>
 
+<br>
 
 ## 📂 CLI command: cd
 
@@ -434,7 +436,7 @@ Recall when we looked at the contents of our current working directory, intro_to
 
 ![list](images/list.png)
 
-We saw that there were other directories. We can navigate or change into these directories using the cd or **c**hange **d**irectory command. Let's change directory into the resources directory:
+We saw that there were other directories. We can navigate or change into these directories using the `cd` or **c**hange **d**irectory command. Let's change directory into the resources directory:
 
 ```
 cd resources
@@ -444,7 +446,7 @@ cd resources
 
 To some extent, the cd command is equivalent to you double-clicking folders on your file explorer.
 
-You'll notice the command prompt shows we successfully navigated into resources. But, I followed the cd command with two commands we learned prior, ls and cd, to look at the contents within resources and re-confirm our new working directory, respectively. We see that the resources directory contains 3 additional directories. 
+You'll notice the command prompt shows we successfully navigated into resources. But, I followed the cd command with two commands we learned prior, ls and pwd, to look at the contents within resources and re-confirm our new working directory, respectively. We see that the resources directory contains 3 additional directories. 
 
 It is common to refer to the navigation we just performed as "going down" because we are going down into directories relative to the hierarchal structure of the file system starting at root. 
 
@@ -549,7 +551,7 @@ cd documentation/
 
 Tabbing makes path navigation faster. Use it so you don't have to type everything out. 
 
-Now, change to the intro_to_cli directory. And let's try tabbing out to achieve the following path:
+Navigate back to the intro_to_cli directory, then try tabbing out to achieve the following path:
 
 ```
 cd resources/documentation
@@ -671,7 +673,7 @@ is the root directory.
 
 ## 📁 CLI command: mkdir
 
-Okay, that was a lot but you're doing great! Let's keep rolling with the next command, mkdir or **m**a**k**e **dir**ectory.
+Okay, that was a lot but you're doing great! Let's keep rolling with the next command, `mkdir` or **m**a**k**e **dir**ectory.
 
 Confirm that you are in the base directory and make a new directory called "test_dir":
 
@@ -697,9 +699,11 @@ Okay, now navigate back to the base directory,
 
 <details>
 <summary>Recall if you need help, here</summary>
+
 ```
 cd ..
 ```
+
 </details>
 
 And attempt to change directory into the 'test dir' directory with a space. There are two ways:
@@ -761,19 +765,31 @@ Knowing this information, take a moment to try to create the scripts directory a
 <details>
 <summary>Reveal solution</summary>
 
+<br>
+
 ```
 mkdir -p bin/scripts
 ```
 
+<br>
+
 ![mkdir_rel](images/mkdir_rel.png)
 
-Voilà, it worked! 
+<br>
+
+Voilà, it worked!
+
+You should notice that the bin directory was made in the base directory and then the scripts directory was made inside bin directory (the parent directory).
+
+<br>
+
 </details>
+
 <br>
 
 ## 📃 CLI command: touch
 
-You can make new files, just like we made new directories in the previous command we learned. For new files, we use the touch command:
+You can make new files, just like we made new directories in the previous command we learned. For new files, we use the `touch` command:
 
 ```
 touch test_file.txt
@@ -781,9 +797,11 @@ touch test_file.txt
 
 ![touch](images/touch.png)
 
-I also performed some additional commands succeeding the touch command to confirm creation of the file. We see that the file we just created is an empty file. 
+I also performed some additional commands proceeding and succeeding the touch command to show that file wasn't initially present and then confirm the creation of the file. We see that the file we just created is an empty file. And, we also confirm the creation of the file via the file explorer pane on the left side bar (orange arrow).
 
 **Challenge: Using a relative path, create another test_file.txt in the documentation directory**
+
+<br>
 
 <details>
 <summary>Reveal solution, here</summary>
@@ -802,7 +820,11 @@ ls *
 
 command to recall where the documentation directory is. We see it present in the resources directory. 
 
-The touch command was then run, providing the relative path to the documentation directory followed by the file name:
+The touch command was then run, providing the relative path to the documentation directory followed by the file name, as shown as the main solution when this section was first revealed: 
+
+```
+touch resources/documentation/test_file.txt
+```
 
 Lastly, the ls command was run with the relative path to the documentation directory to confirm creation of the new file:
 
@@ -812,12 +834,13 @@ ls resources/documentation
 
 </details>
 
+<br>
 
-## ↔️ CLI command: mv
+## ↔️  CLI command: mv
 
 ### Moving files
 
-While you're probably used to dragging and dropping to move things on file explore, we'll make use of the **m**o**v**e command (mv) to move a file. For this, we need to specify to key aspects after the move command. For example:
+While you're probably used to dragging and dropping to move things on file explore, we'll make use of the **m**o**v**e `mv` command to move a file. For this, we need to specify to key aspects after the move command. For example:
 
 ```
 mv file directory
@@ -929,13 +952,13 @@ In this example, I:
 
 ### Copying files
 
-Similar to the move command, we need to inputs for the **c**o**p**y command. For example:
+Similar to the move command, we need two inputs for the **c**o**p**y `cp` command. For example:
 
 ```
 cp file_to_copy where_to_place_copy
 ```
 
-where the first input the file we would like to copy and the second input is the location we want to put that copy. 
+where the first input is the file we would like to copy and the second input is the location we want to place that copy. 
 
 From the base directory, let's make a copy of the samplesheet.csv file and place it into the test_dir directory:
 
@@ -999,23 +1022,35 @@ cp resources/modules/* test_dir/bin/
 
 Confirm to yourself that this copy command was successful. 
 
-Now, what if there were other files within modules/ directory? For example:
 
 ### Deeper dive into the wildcard
 
+Now, what if there were other files within modules/ directory? For example:
+
 ![wc_ls](images/wc_ls.png)
 
-How would you use the wild card character (*) to: </b>
-
-1. Only list files starting with "m"?
-2. Only list txt files
-3. Only list the module_1.txt, module_2.txt, and module_3.txt files
-
-Change directory in to the resources/modules/ directory and attempt to perform the three tasks, above: 
+Change directory into the resources/modules/ directory: 
 
 ```
 cd resources/modules
 ```
+
+and create the following files- module.csv, file.txt, and file.csv:
+
+```
+touch module.csv
+touch file.txt
+touch file.csv
+```
+
+How would you use the wild card character (*) to: </b>
+
+1. Only list files starting with "m"?
+2. Only list txt files?
+3. Only list the module_1.txt, module_2.txt, and module_3.txt files?
+
+
+While inside of the /workspaces/intro_to_cli/resources/modules directory, attempt the 3 tasks, above.
 
 **Hint: Use as many unique characters before or after the wildcard character to list files of interest**
 
@@ -1097,12 +1132,11 @@ cp -r resources/ test_dir/
 
 Success!
 
-
 ## 🗑️ CLI command: rm
 
 ### Removing a file
 
-The **r**e**m**ove comand (rm) is used for the removal of files and takes the general form:
+The **r**e**m**ove `rm` comand is used for the removal of files and takes the general form:
 
 ```
 rm file_to_delete.txt
@@ -1115,7 +1149,7 @@ Within the base directory, let's go ahead and specify the samplesheet.csv file f
 
 >⚠️ **Caution:** This action will delete all files (and directories) permanently. <br>
 >⚠️ **Caution:** There is no recycle bin when deleting via the CLI.
->⚠️ **Caution:** Always double and confirm to yourself that you are deleting the correct content before executing the command
+>⚠️ **Caution:** Always double check that you are deleting the correct content before executing the command
 
 ```
 rm samplesheet.csv
@@ -1219,7 +1253,7 @@ We will now explore various techniques to view a file.
 
 ### cat 
 
-The first is cat, short for concatenate. This will read and write the entire contents of a file to your terminal if you type:
+The first is `cat`, short for concatenate. This will read and write the entire contents of a file to your terminal if you type:
 
 ```
 cat file_name.txt
@@ -1240,7 +1274,7 @@ You'll notice this is only an image of the end of the file because it's a relati
 
 ### less
 
-However, sometimes files may be thousands of lines long and you want more fine-tuned control of the navigation. For this we can use the command, less.
+However, sometimes files may be thousands of lines long and you want more fine-tuned control of the navigation. For this we can use the command, `less`.
 
 ```
 less log.txt
@@ -1272,7 +1306,7 @@ q
 
 Sometimes, you just want to view the first part of a file. For example, the beginning of a log file to view summary information about a run. 
 
-For this, we use the head command
+For this, we use the `head` command
 
 ```
 head log.txt
@@ -1294,7 +1328,7 @@ And now we've displayed the first 20 lines of the log file.
 
 ### tail
 
-Other times, you may want to only view the end of file to view, for example, to make sure that your bioinformatics pipeline completed successfully. For this, we use the tail command: 
+Other times, you may want to only view the end of file to view, for example, to make sure that your bioinformatics pipeline completed successfully. For this, we use the `tail` command: 
 
 ```
 tail log.txt
@@ -1310,7 +1344,7 @@ tail log.txt
 
 ## 📝 CLI command: nano
 
-Nano is a text editor for Linux. Think of it like the notepad app you may be familiar with: 
+`nano` is a text editor for Linux. Think of it like the notepad app you may be familiar with: 
 
 ![notepad](images/notepad.png)
 
@@ -1379,8 +1413,8 @@ head test_file.txt
 Success! 
 
 > [!NOTE]
-> You can also edit files that have already been created
-> Try editing the test_file.txt again, add a second line, save, and view the file
+> You can also edit files that have already been created.
+> Try editing the test_file.txt again, add a second line, save, and view the file.
 
 Where the nano editor really shines is when we want to create scripts to automate processes, as we'll see in the next section. 
 
@@ -1390,7 +1424,7 @@ Why create a script? We like automation for reproducibility and efficiency, and 
 
 A script is already in the intro_to_cli/ directory, aptly named, script.sh.
 
-Let's start the script with the bash command:
+Let's start the script with the `bash` command:
 
 ```
 bash script.sh
@@ -1407,8 +1441,9 @@ The command line prompt "$" will appear on a new line once the script is complet
 > But, imagine one day someone will look at your code and try to understand how it functions.
 > Coding standards make reading code more streamlined and so the .sh extension tells others to look there for automated scripts
 
+<br> 
 
-**Final concept check challenge**
+> **Final concept check challenge**
 
 Take some time to re-edit the script.sh file to achieve the following objectives:
 
@@ -1419,7 +1454,7 @@ Take some time to re-edit the script.sh file to achieve the following objectives
 3) Then, using relative paths, list the contents of test_file.txt in long format and make the output human-readable
 4) Provide a message at the end of the script that says the script is completed
 
->[!TIP]
+> [!TIP]
 > Start each command on a new line
 
 <br>
@@ -1445,7 +1480,7 @@ And showing this on the CLI:
 
 <br>
 
-It's okay if you didn't get last line. The point of this exercise is that you're not always going to have me. So I want to take this moment to introduce you to someone much smarter than me:
+It's okay if you didn't get the last line. The point of this exercise is that you're not always going to have me. So I want to take this moment to introduce you to someone much smarter than me:
 
 ![ai_chat](images/ai_chat.png)
 
