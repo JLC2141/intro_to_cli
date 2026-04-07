@@ -155,7 +155,7 @@ To change folders, make new ones, copy files, move files, etc., you can also per
 
 <br>
 
-Now, back to the purple box. If your codespace looks like that, then that "$" in the terminal window is a prompt telling us that it is ready to accept commands. So let's get started with CLI! 
+Now, back to the purple box two images, above. If your codespace looks like that, then that "$" in the terminal window is a prompt telling us that it is ready to accept commands. So let's get started with CLI! 
 
 <br>
 
@@ -483,6 +483,9 @@ cd /resources
 
 <details>
 <summary>Reveal solution, here</summary>
+
+<br>
+
 Because you're specifying at root with the forward slash. So while you're trying to change directory within intro_to_cli, the command is trying to find a resources directory at root, which doesn't exist. 
 
 List at root to confirm that:
@@ -494,6 +497,7 @@ ls /
 
 </details>
 
+<br>
 
 #### 2) You can traverse multiple directories at a time using the cd command. For example, say our current working directory is intro_to_cli and we want to navigate into the documentation directory that's located inside of the resources directory. We *could* perform the cd command in two consecutive steps:
 
@@ -669,7 +673,7 @@ is the root directory.
 </details>
 
 
-**Moving forward, I will use the term base directory to refer to the intro_to_cli directory for purposes of simplicity.**
+**Moving forward, I will use the term base directory to refer to the intro_to_cli directory for purposes of simplicity. So if the tutorial states, "perform this command while located in the base directory", I mean perform a command while you're in /workspaces/intro_to_cli/**
 
 ## 📁 CLI command: mkdir
 
