@@ -752,7 +752,7 @@ man mkdir
 
 ![mkdir_man](images/mkdir_man.png)
 
-Now we're talking! The p flag is exactly what we need. Because bin is the parent directory of scripts, the p flag will make sure to create this parent directory if not already present.
+Now we're talking! The p flag is exactly what we need. Because bin is the parent directory of scripts, the p flag will make sure to create this parent directory, if not already present, to then allow the scripts directory to be made.
 
 Knowing this information, take a moment to try to create the scripts directory as we attempted before, except this time also use the p flag.
 
@@ -773,27 +773,76 @@ Voilà, it worked!
 
 ## 📃 CLI command: touch
 
+You can make new files, just like we made new directories in the previous command we learned. For new files, we use the touch command:
+
+```
+touch test_file.txt
+```
+
 ![touch](images/touch.png)
 
+I also performed some additional commands succeeding the touch command to confirm creation of the file. We see that the file we just created is an empty file. 
 
-Touch with relative path
+**Challenge: Using a relative path, create another test_file.txt in the documentation directory**
 
 <details>
 <summary>Reveal solution, here</summary>
 
+```
+touch resources/documentation/test_file.txt
+```
+
 ![touch_rel](images/touch_rel.png)
 
-</details>
+I first ran the:
 
-Attempt move with new relative path
+```
+ls *
+```
+
+command to recall where the documentation directory is. We see it present in the resources directory. 
+
+The touch command was then run, providing the relative path to the documentation directory followed by the file name:
+
+Lastly, the ls command was run with the relative path to the documentation directory to confirm creation of the new file:
+
+```
+ls resources/documentation
+```
+
+</details>
 
 
 ## ↔️ CLI command: mv
 
 ### Moving files
 
+While you're probably used to dragging and dropping to move things on file explore, we'll make use of the **m**o**v**e command (mv) to move a file. For this, we need to specify to key aspects after the move command. For example:
+
+```
+mv file directory
+```
+
+First, we specify the file that we want to move. Second, we specify where we want to move it to. The "where" is typically a new directory. For example, from our base directory, let's move the test_file.txt we created in the previous command to the test_dir directory:
+
+```
+mv test_file.txt test_dir
+```
+
 ![mv](images/mv.png)
 
+If we run:
+
+```
+ls
+``` 
+in the base directory and
+
+```
+ls test_dir
+```
+
+we see that the file was successfully moved.
 
 ![mv_check](images/mv_check.png)
 
@@ -801,34 +850,78 @@ Attempt move with new relative path
 
 **Moving a file within the same directory will rename the file**
 
+While in a directory of interest, you can use the move command as such:
+
+```
+mv old_file_name.txt new_file_name.txt
+```
+
+where the first input is the file name you want to change and the second input is the new name of the file.
+
+Change directory into test_dir:
+
+```
+cd test_dir
+```
+
+and then change the test_file.txt to new file name. For example:
+
+```
+mv test_file.txt new_file_name.txt
+```
+
 ![mv_rename](images/mv_rename.png)
 
-You can also move directories
+I also ran the list command (ls) afterwards to confirm that the file name change was successful. 
 
 ### Moving directories
 
+Okay, so far we learned that you can use the mv command to:
+
+* mv a file into a different directory
+* rename a file within the same directory
+
+And now, we'll learn that you can also use the move (mv) command to move a directory. This simply takes the form of:
+
+```
+mv directory_to_move directory_to_move_to
+```
+
+where the first input is the directory that you want to move and the second input is the directory location where you want to move the first input to.
+
+With this knowledge:
+
 Take a moment to: 
 1) Move the bin/ directory into test_dir/
-2) Move the scripts/ directory into test_dir/
+2) Then, move the scripts/ directory into test_dir/
+
+**Recall, the scripts directory is inside of the bin directory**
 
 <details>
 <summary>Reveal solution, here</summary>
 
 ![mv_dir](images/mv_dir.png)
 
-I showed you a solution, not the only solution. Here's another way:
+In this example, I:
+1. Moved the bin/ directory into test_dir/
+2. Changed into the test_dir/
+3. Moved the scripts directory, specified by a relative path, to the test_dir using the single dot ,"here", specification 
+4. Confirmed successful move
+
+**Recall that the single dot (.) is a way to specify the current working directory. At the time the command was run, I was located in test_dir so . equals /workspaces/intro_to_cli/test_dir**
+
+*I showed you a solution*, not the only solution. Here's another way:
 
 ![mv_dir_alt](images/mv_dir_alt.png)
 
-In this example, we:
+In this example, I:
 1. Moved the bin/ directory into test_dir/
 2. Changed into the test_dir/
 3. Changed into the bin/ directory
 4. Moved the scripts/ directory up to the parent directory (test_dir/)
-5. Changed directory up into the test_dir/
+5. Changed directory up into the test_dir/ to confirm successful move
 
-This solution took more steps but it is not wrong. With the knowledge you're gaining with CLI, start to make the connection that there are multiple ways to achieve the same goal.
-
+**This solution took more steps but it is not wrong. With the knowledge you're gaining with CLI, start to make the connection that there are multiple ways to achieve the same goal.**
 
 </details>
 
@@ -836,13 +929,77 @@ This solution took more steps but it is not wrong. With the knowledge you're gai
 
 ### Copying files
 
+Similar to the move command, we need to inputs for the **c**o**p**y command. For example:
+
+```
+cp file_to_copy where_to_place_copy
+```
+
+where the first input the file we would like to copy and the second input is the location we want to put that copy. 
+
+From the base directory, let's make a copy of the samplesheet.csv file and place it into the test_dir directory:
+
+```
+cp samplesheet.csv test_dir
+```
+
 ![cp](images/cp.png)
+
+I also performed the:
+
+```
+ls *
+```
+
+command succeeding the copy (cp) command to confirm that:
+1) samplesheet.csv is still present in the base directory
+2) And now a copy of that samplesheet.csv is now present in the test_dir directory
 
 Recall the wildcard character (*). We can also use that to copy a selection of files.
 
+We're going to put a few tips and lessons we learned so far in this next task to copy all contents from
+
+```
+/workspaces/intro_to_cli/resources/modules/
+```
+
+to 
+
+```
+/workspaces/intro_to_cli/test_dir/bin/
+```
+
+The steps achieve this task are:
+1) Start with the copy command and then use relative paths to specify the directory containing the files of interest:
+
+```
+cp resources/modules/
+```
+
+2) Use the wildcard character to select all contents in the modules directory
+
+```
+cp resources/modules/* 
+```
+
+3) Start typing the relative path of the location, which starts with the test_dir, followed by a double-tab to reveal the contents of test_dir
+
+```
+cp resources/modules/* test_dir/
+```
+
+4) You should see the bin directory. Finish the relative path in the second input and enter the complete command:
+
+```
+cp resources/modules/* test_dir/bin/
+```
+
 ![cp_wc](images/cp_wc.png)
 
-What if there were other files within modules/ directory? For example:
+
+Confirm to yourself that this copy command was successful. 
+
+Now, what if there were other files within modules/ directory? For example:
 
 ### Deeper dive into the wildcard
 
@@ -850,14 +1007,50 @@ What if there were other files within modules/ directory? For example:
 
 How would you use the wild card character (*) to: </b>
 
-1. Only select files starting with "m"?
-2. Only select txt files
-3. Only select the module_1.txt, module_2.txt, and module_3.txt files
+1. Only list files starting with "m"?
+2. Only list txt files
+3. Only list the module_1.txt, module_2.txt, and module_3.txt files
+
+Change directory in to the resources/modules/ directory and attempt to perform the three tasks, above: 
+
+```
+cd resources/modules
+```
+
+**Hint: Use as many unique characters before or after the wildcard character to list files of interest**
 
 <details>
 <summary>Reveal solution, here</summary>
 
+Again, wildcard alone lists all everything:
+
+```
+ls *
+```
+
+But now, we can add characters to limit what the wildcard selects. For example, in task 1:
+
+```
+ls m*
+```
+
+we place a "m" before the wildcard to list all contents starting with the letter m. In task 2:
+
+```
+ls *.txt
+```
+
+we place a ".txt" after the wildcard to list all files ending with that file extension. In task 3:
+
+```
+ls m*.txt
+```
+
+we place a "m" before and ".txt" after the wildcard to only specify files txt files that start with the letter "m".
+
 ![wc](images/wc.png)
+
+Hopefully the versatility of using the wildcard is starting to make sense!
 
 </details>
 
@@ -870,12 +1063,16 @@ As you can see, we performed this with the list (ls) command. The wild card char
 * cp
 * rm
 
-Or, when we're running a bioinformatics program and we want to process all FASTQ files within a directory.
+**Or, when we're running a bioinformatics program and we want to process all FASTQ files within a directory.**
 
 
 ### Copying directories
 
-Alright, as we saw with move, when we moved both files and directories, we can do the same with copy. Let's try to copy the resources/ directory into the test_dir/ directory:
+Alright, as we saw with move, we moved both files and directories, and we can do the same with copy! From the base directory, let's try to copy the resources/ directory into the test_dir/ directory:
+
+```
+cp resources/ test_dir/
+```
 
 ![cp_dir_err](images/cp_dir_err.png)
 
@@ -887,38 +1084,46 @@ The "-r" flag stands for recursive and is required when copying directories beca
 
 It failed without the "-r" flag because cp only works at a single level and because the resources/ directory contains contents, the "-r" flag is used to permit traversing the entire directory tree within resources/
 
+**Recall: exit the manual by just typing "q"**
+
 Let's re-try the copy command with the recursive flag:
+
+```
+cp -r resources/ test_dir/
+```
 
 ![cp_r](images/cp_r.png)
 
 
 Success!
 
+
 ## 🗑️ CLI command: rm
 
-Remove deletes files and directories. The command for this is:
+### Removing a file
 
-```
-rm
-```
-
-followed by the file you want to delete:
+The **r**e**m**ove comand (rm) is used for the removal of files and takes the general form:
 
 ```
 rm file_to_delete.txt
 ```
 
-### Removing a file
+where the input following the command specifies the file you want to remove.
 
 
-Within the intro_to_cli/ directory, let's go ahead and specify the samplesheet.csv file for deletion.
+Within the base directory, let's go ahead and specify the samplesheet.csv file for deletion.
 
 >⚠️ **Caution:** This action will delete all files (and directories) permanently. <br>
-> ⚠️ **Caution:** There is no recycle bin when deleting via the CLI.
+>⚠️ **Caution:** There is no recycle bin when deleting via the CLI.
+>⚠️ **Caution:** Always double and confirm to yourself that you are deleting the correct content before executing the command
 
+```
+rm samplesheet.csv
+```
 
 ![rm](images/rm.png)
 
+And we see it's gone! Never to return!
 
 ### Removing a directory
 
@@ -937,6 +1142,10 @@ Yea you, your time is up. We know better now than to name our files and director
 
 Let's remove that directory:
 
+```
+rm 'test dir'/
+```
+
 ![rm_dir_err](images/rm_dir_err.png)
 
 
@@ -947,6 +1156,10 @@ Not again! 🤦‍♂️ Can you recall the flag we need to add in order to dele
 
 The recursive flag "-r"! 
 
+```
+rm -r 'test dir'/
+```
+
 ![rm_dir_r](images/rm_dir_r.png)
 
 And we see that the directory is gone. The directory was empty, but it doesn't matter. You need to add the recursive flag with trying to delete (or copy) a directory.
@@ -955,10 +1168,10 @@ And we see that the directory is gone. The directory was empty, but it doesn't m
 
 <br>
 
-Okay, let's try to remove a directory with contents in it. Let's remove the test_dir/ directory:
+Okay, 'test dir' was empty but let's try to remove a directory with contents in it. Let's remove the test_dir/ directory:
 
 ```
-rm -r test_dir
+rm -r test_dir/
 ```
 
 ![rm_dir_r_can](images/rm_dir_r_can.png)
@@ -976,7 +1189,13 @@ You see, each line was a prompt, asking if I wanted to delete a particular file 
 
 Add the force (-f) flag in combination with the recursive (-r) flag to remove prompts and delete the directory:
 
+```
+rm -rf test_dir/
+```
+
 ![rm_dir_rf](images/rm_dir_rf.png)
+
+There! In summary the recursive (-r) flag is required to delete directories and the force flag (-f) ignores prompts when you want to delete a directory containing multiple contents.
 
 <br>
 
@@ -984,7 +1203,7 @@ Add the force (-f) flag in combination with the recursive (-r) flag to remove pr
 > ```
 >rm -rf *
 >```
-> ⚠️ **Caution:** Unless you are certain of where you currently are located in the file system <br>
+> ⚠️ **Caution:** Unless you are certain of where you are currently located in the file system <br>
 ><br>
 > **And definitely do not ever run**:
 >```
@@ -1008,19 +1227,23 @@ cat file_name.txt
 
 For example, let's look at the contents of the log.txt file:
 
+```
+log.txt
+```
+
 ![cat](images/cat.png)
 
 You'll notice this is only an image of the end of the file because it's a relatively long file. You can scroll up and down to navigate the contents.
 
 > [!NOTE]
-> This is just a mock log file of bioinformatics pipeline
+> This is just a mock log file of a bioinformatics pipeline
 
 ### less
 
 However, sometimes files may be thousands of lines long and you want more fine-tuned control of the navigation. For this we can use the command, less.
 
 ```
-less logfile.txt
+less log.txt
 ```
 
 ![less](images/less.png)
@@ -1031,12 +1254,13 @@ In contrast to cat, you'll notice the less command opens a full-screen terminal 
 /STEP 4
 ```
 
-For search results below your current location in the file or:
+requiring the "/" character for search results below your current location in the file or:
 
 ```
 ?BIOINFORMATICS
 ```
-For search results above your current location in the file.
+
+requiring the "?" character for search results above your current location in the file.
 
 To exit terminal pager window, just type: 
 
@@ -1051,7 +1275,7 @@ Sometimes, you just want to view the first part of a file. For example, the begi
 For this, we use the head command
 
 ```
-head logfile.txt
+head log.txt
 ```
 
 ![head](images/head.png)
@@ -1081,6 +1305,8 @@ tail log.txt
 > [!NOTE]
 > Tail also works with the -n # of lines flag as shown with the head command.
 
+**Note, these are various methods to use commands to view a file. However, you're more than welcome to take advantage of the VS Code interface to view files, too. Click on the log.txt file on the left side bar panel to view the file via VS Code.**
+
 
 ## 📝 CLI command: nano
 
@@ -1104,6 +1330,10 @@ This initiates the editor.
 
 Add some notes to the first line. For example:
 
+```
+This is a test file.
+```
+
 ![nano_edit](images/nano_edit.png)
 
 
@@ -1124,15 +1354,25 @@ y
 ```
 
 The final prompt allows us to name our file. 
+
 ![nano_save](images/nano_save.png)
 
-We don't need to change the name. Save the file by pressing the enter key ↩ and exit the editor. 
+We don't need to change the name. We already named it when we executed the nano command. Save the file by pressing the enter key ↩ and exit the editor. 
 
 Verify that your file has been created.
 
+```
+ls
+```
+
 ![nano_final](images/nano_final.png)
 
-And view the final with any method you prefer.
+
+And view the final with any method you prefer:
+
+```
+head test_file.txt
+```
 
 ![nano_view](images/nano_view.png)
 
