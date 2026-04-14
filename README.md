@@ -1,4 +1,4 @@
-# Introduction to command line interface (CLI) - Part I
+# Introduction to command line interface (CLI)
 
 ## Welcome to an intro to CLI, a virtual training offered prior to the 2026 Midwest Bioinformatics Training 
 
