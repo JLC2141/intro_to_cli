@@ -55,6 +55,7 @@ By the end of this module, you should understand and be comfortable using the fo
 
 And be familiar with concepts and best practices such as:
 
+* Navigation of codespaces interface 
 * Flags to modify CLI commands 
 * Full paths vs relative paths 
 * Providing relative paths for faster navigation
@@ -873,6 +874,50 @@ we see that the file was successfully moved.
 
 ![mv_check](images/mv_check.png)
 
+>⚠️ **Caution:** Moving a file into a directory with a file containing the same name will automatically overwrite the file. <br>
+>⚠️ **Caution:** There is no undo (ctrl+z) once this command executes.
+
+
+For example, let's make a new file also called test_file.txt *in the base directory*:
+
+```
+touch test_file.txt
+```
+
+Recap: we have a file named test_file.txt in the base directory and another file also named test_file.txt in the test_dir directory. 
+
+Just as we did before, move the test_file.txt from the base directory into the test_dir directory:
+
+```
+mv test_file.txt test_dir/
+```
+
+![mv_ow](images/mv_ow.png)
+
+
+Notice how we had two files but now there is only one file in the test_dir directory. The original test_file.txt was just overwritten.
+
+**Files with the same name will automatically be overwritten with the mv command.**
+
+However, there is flag we could add to prevent this from happening. How could you look into finding a way to stop an automated file overwrite? 
+
+<details>
+<summary>Reveal solution, here</summary>
+
+Look at the manual for the move command to uncover different flags!
+
+![mv_man](images/mv_man.png)
+
+I've highlighted three potential flags:
+
+1) -b: make a backup in case of overwrite.
+2) -i: provide a prompt prior to an overwrite to allow user confirmation.
+3) -n: prevent overwite outright.
+
+All of these flags provide viable solutions. I encourage you to explore these flags on your own free time. 
+
+</details>
+
 ### Renaming files with the move command
 
 **Moving a file within the same directory will rename the file**
@@ -1152,7 +1197,7 @@ where the input following the command specifies the file you want to remove.
 Within the base directory, let's go ahead and specify the samplesheet.csv file for deletion.
 
 >⚠️ **Caution:** This action will delete all files (and directories) permanently. <br>
->⚠️ **Caution:** There is no recycle bin when deleting via the CLI.
+>⚠️ **Caution:** There is no recycle bin or undo (ctrl+z) when deleting via the CLI.
 >⚠️ **Caution:** Always double check that you are deleting the correct content before executing the command
 
 ```
@@ -1250,6 +1295,10 @@ There! In summary the recursive (-r) flag is required to delete directories and 
 > ⚠️ **Caution:** Because this would delete everything starting at the root directory...so all contents on your computer.<br>
 >There's typically a built-in safeguard if you try to remove from the root but it's best not to use that command at all
 
+> [!NOTE] <br>
+> Most institutions will typically have backups in place to recover files in case of an accidental deletion.
+> But still, save the headache of backup and recovery (and your relationship with IT) by always thinking twice before running `rm -rf`.
+> And again, this codespace we're currently working in is just a test space so feel free to make mistakes! We're all learning here!
 
 ## 🔍 CLI command: cat, less, head, tail
 
@@ -1501,6 +1550,11 @@ And then set the following preferences:
 
 Agent will try to change your code automatically while agent will just provide suggestions.
 
+If you do not see this as an option, try to search for "> ask" in the search bar and select the "Chat: Open Chat (Ask)" option:
+
+![find_ask](images/find_ask.png)
+
+
 2. Set the model to Claude
 
 ![ai_set_model](images/ai_set_model.png)
@@ -1538,23 +1592,116 @@ fi
 I encourage you make use of the AI agent to better understand why this is a better solution. Then, really challenge yourself by trying to understand how this "if statement" works and then implement and run it in your script.
 
 
-### Notes
+>⚠️ **Caution:** Always consult your organization's policy on AI before using it for your own work and data. <br>
 
-* You will not need to memorize all of these commands in preparation for the workshop.
+For example, GitHub annouced the following:
+
+![copilot_optout](images/copilot_optout.png)
+
+Meaning, anything you type and data you use to interact with GitHub copilot will be shared with GitHub to better train their AI models **unless you choose to opt out**. I recommend opting out to err on the side of caution. Remember, this tutorial is just toy data that we're using in a public setting. **You have to be much more cautious when using AI with data containing PII/PHI and confidential information related to your institution.**
+
+> [!NOTE] <br>
+> You will not need to memorize all of these commands in preparation for the workshop.
+> The in-person workshop contains tutorials and format similar to this CLI workshop.
+
+> [!TIP] <br>
+> Once you feel more comfortable with the concepts of the command line, you can save time via copying and pasting from code blocks embedded within the tutorial.
+
+Navigate to the original repository for this tutorial, [here](https://github.com/JLC2141/intro_to_cli), and open the README.md file.
+ 
+Find a code block and select the cliboard icon to copy the code:
+
+<br>
+
+![codeblock](images/codeblock.png)
+
+<br>
+
+You should see the "Copied!" confirmation:
+
+<br>
+
+![codeblock_confirm](images/codeblock_confirm.png)
+
+<br>
+
+Navigate to your codespace and press Ctrl+V to paste. You'll be prompted to allow copying and pasting:
+
+<br>
+
+![clipboard_allow](images/codeblock_allow.png)
+
+<br>
+
+> [!NOTE] <br>
+> This works best on Microsoft Edge or Google Chrome web browsers. **I do not recommend Mozilla Firefox**.
+
+Finally, try to paste, again:
+
+<br>
+
+![clipboard_paste](images/codeblock_paste.png)
+
+<br>
+
+**Success! Again, I only recommend this shortcut when you feel more comfortable with the concepts because actively engaging with the code is your best way to learn.**
+
+## Other resources
+
+It is not my intent to inundate you with multiple resources.
+With this core foundation you learned here, you now have the tools to explore other CLI commands on your own. 
+
+However, I will share this resource from Data Carpentry: [Introduction to the Command Line for Genomics](https://datacarpentry.github.io/shell-genomics/index.html). 
+
+If interested, I suggest reading through the tutorial to learn a few more commands such as:
+
+* wget/curl
+* history
+* grep
+* for loops
 
 
+## Deleting your codespace
 
-## 📨 CLI command: wget
-or save for part II?
+GitHub Codespaces has a [free quota](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces#free-quota)
 
-Part II
-* wget
-* for loop
-* bash variable
-* cat >
-* line breaks with a command
-    * ls -l \
-         -h \
-        results/test_file.txt
+Once that is used, you will be charged or prevented from accessing codespaces if no credit card is on file. **The free quota resets every month.**
+
+Let's delete this codespace to make sure that we don't hit this quota.
+
+* Close out of your codespace web browswer tab. From the Github page, select the menu:
+
+![github_menu](images/github_menu.png)
+
+* Then select Codespaces from the dropdown menu:
+
+![github_codespaces](images/github_codespaces.png)
+
+* Select the "more options" icon for your codespace session and then select delete. Confirm deletion.
+
+![stop_codespace](images/stop_codespace.png)
 
 
+> [!NOTE] <br>
+> **You will need to have free quota available for the in-person workshop.** <br>
+> If you intend to continue to practice this CLI tutorial asynchronously, I recommend making a second GitHub account (with your gmail, for example).
+> Choose one account from which you will practice this CLI tutorial and choose another account that you will only use for the in-person workshop. 
+
+
+## 👥 Credits
+
+This training module was built and is maintained by the Genomics Analysis Unit at the Michigan Department of Health & Human Services (MDHHS) Bureau of Laboratories.
+
+
+## ⚠️ Disclaimer
+This repository is not a source of government records but is intended to increase collaboration and collaborative potential on public health related projects. Materials and information in this repository are intended to share information and collaboratively develop analysis workflows. 
+
+The workflow reflects the current understanding of the CLI and may be updated as needed and pursuant to further analysis and review. No warranty, expressed or implied, is made by MDHHS Bureau of Laboratories as to the functionality of the software and related material nor shall the fact of release constitute any such warranty. Furthermore, the software is released on condition that the MDHHS Bureau of Laboratories shall not be held liable for any damages resulting from its authorized or unauthorized use. 
+
+
+## 🔒 Privacy Notice
+Use of this service is limited only to non-sensitive and publicly available data. Users must not use, share, or store any kind of sensitive data like health status, provision or payment of healthcare, Personally Identifiable Information (PII) and/or Protected Health Information (PHI), etc. under any circumstance.
+
+
+## 📜 License
+This project is released under the [**MIT License**](LICENSE).
