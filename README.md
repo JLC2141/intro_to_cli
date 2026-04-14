@@ -851,6 +851,9 @@ While you're probably used to dragging and dropping to move things on file explo
 mv file directory
 ```
 
+> [!NOTE] <br>
+> Above is just an example code block for basic usage of the `mv` command. Do not run this command.
+
 First, we specify the file that we want to move. Second, we specify where we want to move it to. The "where" is typically a new directory. For example, from our base directory, let's move the test_file.txt we created in the previous command to the test_dir directory:
 
 ```
@@ -1008,6 +1011,9 @@ cp file_to_copy where_to_place_copy
 ```
 
 where the first input is the file we would like to copy and the second input is the location we want to place that copy. 
+
+> [!NOTE] <br>
+> Above is just an example code block for basic usage of the `cp` command. Do not run this command.
 
 From the base directory, let's make a copy of the samplesheet.csv file and place it into the test_dir directory:
 
@@ -1193,6 +1199,8 @@ rm file_to_delete.txt
 
 where the input following the command specifies the file you want to remove.
 
+> [!NOTE] <br>
+> Above is just an example code block for basic usage of the `rm` command. Do not run this command.
 
 Within the base directory, let's go ahead and specify the samplesheet.csv file for deletion.
 
@@ -1309,13 +1317,16 @@ We will now explore various techniques to view a file.
 The first is `cat`, short for concatenate. This will read and write the entire contents of a file to your terminal if you type:
 
 ```
-cat file_name.txt
+cat your_file_name.txt
 ```
+
+> [!NOTE] <br>
+> Above is just an example code block for basic usage of the `cat` command. Do not run this command.
 
 For example, let's look at the contents of the log.txt file:
 
 ```
-log.txt
+cat log.txt
 ```
 
 ![cat](images/cat.png)
@@ -1500,25 +1511,40 @@ The command line prompt "$" will appear on a new line once the script is complet
 
 Take some time to re-edit the script.sh file to achieve the following objectives:
 
-* Make a comment where they should take advantage of vs code text editor. Click on the file and use the VS code
-
 1) Remove the first line
 2) Make a new line that moves the test_file.txt into the results/ directory
 3) Then, using relative paths, list the contents of test_file.txt in long format and make the output human-readable
 4) Provide a message at the end of the script that says the script is completed
 
 > [!TIP]
-> Start each command on a new line
+> Start each command on a new line.
+
+> [!NOTE] <br>
+> I know that we just learned the nano command but take advantage of the VS Code interface to select the file from the file explorer window. <br>
+> Use the built-in text editor to edit this script.sh file.
+> Even bioinformaticians like coding conveinence! 
+
+
+![vscode_texteditor](images/vscode_texteditor.png)
+
 
 <br>
 <details>
 <summary>Reveal solution, here</summary>
 
 ```
+# Move file to the results directory
 mv test_file.txt results
+# List information in long format and make file size human-readable
 ls -lh results/test_file.txt
+# Provide a message when script completes 
 echo "Script completed"
 ```
+<br>
+
+![script_solution](images/script_solution.png)
+
+<br>
 
 And showing this on the CLI:
 
