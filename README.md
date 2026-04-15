@@ -1630,7 +1630,7 @@ Things to note:
 
 1) I removed the echo command that I originally had from script.sh
 2) Click on script.sh in the file explorer pane to add the file to the chat. Now, when you ask the AI assistant your question, it will answer it in the context of the contents of this file you specified.
-3) Provide question to the AI agent and enter
+3) Provide the question to the AI agent and enter
 
 And we see the following output:
 
