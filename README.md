@@ -63,8 +63,9 @@ And be familiar with concepts and best practices such as:
 
 ## 💻 Getting Started in GitHub Codespaces
 
-> [!NOTE] 
-> In order to use GitHub Codespaces, you need a GitHub account. Make one for free, [here](https://github.com/).
+> [!NOTE] <br>
+> In order to use GitHub Codespaces, you need a GitHub account. Make one for free, [here](https://github.com/). <br>
+> Codespaces works best on Microsoft Edge or Google Chrome web browsers. **I do not recommend Mozilla Firefox**.
 
 
 #### Step 1: Navigate to the GitHub repository containing this introductory CLI module, [here](https://github.com/JLC2141/intro_to_cli).
@@ -1194,6 +1195,10 @@ It failed without the "-r" flag because `cp` only works at a single level and be
 **Recall: exit the manual by just typing "q"**
 
 Let's re-try the copy command with the recursive flag:
+
+> [!TIP] <br>
+> Press the up arrow ⬆️ on your keyboard. You'll notice that previously executed commands appear. Bring up the last `cp` command we attempted. <br>
+> And then, press the left arrow ⬅️ to navigate between `cp` and the first input to add the -r flag.
 
 ```
 cp -r resources/ test_dir/
