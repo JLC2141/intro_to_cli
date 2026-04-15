@@ -21,8 +21,6 @@
 - [CLI command: cat, less, head, tail](#-cli-command-cat-less-head-tail)
 - [CLI command: nano](#-cli-command-nano)
 - [CLI command: bash](#-cli-command-bash)
-- [CLI command: wget](#-cli-command-wget)
-
 
 ## 📖 Overview
 
@@ -124,6 +122,10 @@ intro_to_cli/
 └── script.sh
 ```
 
+> [!NOTE] <br>
+> You may also see a .devcontainer and images folder. Ignore them. <br>
+> They were needed to buiid the environment we're currently working in and add images to the tutorial.
+
 ---
 
 This parellels to the same functionality you may be used to when, for example, using the file explorer on your computer, such as this:
@@ -172,7 +174,7 @@ Before we start, take note of where we are currently located in the file system:
 
 ![loc](images/loc.png)
 
-**We are in a directory called intro_to_cli. I will refer to this directory throughout the tutorial as the base working directory.**
+**We are in a directory called intro_to_cli. It is always important to know where you are in the file system when running commands.**
 
 Our first command is `ls`, or **l**i**s**t:
 
@@ -193,7 +195,7 @@ This lists the contents within the intro_to_cli directory and lists the exact sa
 
 <br>
 
-The list (ls) command is helpful to view directory contents but we can do more. Go ahead and perform the following command:
+The list `ls` command is helpful to view directory contents but we can do more. Go ahead and perform the following command:
 
 ```
 ls -l
@@ -208,7 +210,7 @@ We just added what is known as a flag to the list command. **Flags are used to m
 > Terminology ramble again: I will use the term "flag" but you may also come across other terms such as an "argument" or an "option".
 > You'll also see another type of flag invocation when we get to bioinformatic pipelines: the double dash prefix, "--", uses a multi-character flag that is more descriptive. For example --outdir would be flag specifying the directory where results are output.
 
-This specific flag leads to the output of the ls command in long format, and now we see much more information about these directories and files. Only focus on the red box in the image for now. Can you guess what that is?
+This specific flag leads to the output of the `ls` command in long format, and now we see much more information about these directories and files. Only focus on the red box in the image for now. Can you guess what that is?
 
 <details>
 <summary>Reveal solution, here</summary>
@@ -228,11 +230,11 @@ ls -lh
 ![list_lh](images/list_lh.png)
 
 
-Ah, much better! The h flag outputs file/directory size in human-readable format. We see, for example, that the resources directory is 4.0K or 4 kilobytes. Larger files/directories will have a M or G designation for megabytes or gigabytes, respectively. 
+Ah, much better! The h flag outputs file (or directory) size in human-readable format. We see, for example, that the resources directory is 4.0K or 4 kilobytes. Larger files/directories will have a M or G designation for megabytes or gigabytes, respectively. 
 
 > [!TIP] <br>
-> Other useful flags for the list command include -S (sort by size) and -t (sort by time)
-> Other commands we'll learn throughout this tutorial also have flags
+> Other useful flags for the list command include -S (sort by size) and -t (sort by time). <br>
+> Other commands we'll learn throughout this tutorial also have flags. 
 
 As stated in the beginning, we are in the intro_to_cli directory and just listed its contents. But what if I wanted to list what was in the resources directory? Enter the following command:
 
@@ -249,7 +251,7 @@ What do we see?
 Inside the resources directory, there are three additional directories
 </details>
 
-You can use the list command to see what's in your current directory (simply with ls) or, you can further specify which directory you want to list the contents of. 
+You can use the list command to see what's in your current directory (simply with `ls`) or, you can further specify which directory you want to list the contents of. 
 
 But what if you wanted to see inside the contents of all directories within the intro_to_cli directory? For that, let's introduce you to the wildcard character🃏. Enter the following:
 
@@ -288,7 +290,7 @@ Two additional things to note before we move to the next command:
 clear
 ```
 
-Technically, this is also a command but it is just used to clear your screen.
+Technically, this is also a command but it is just used to terminal application interface.
 
 2) It's okay to type and enter incorrect commands. You might receive a note that the command is not found. For example, try:
 
@@ -305,7 +307,7 @@ Ctrl+C
 
 ## 📕 CLI command: man
 
-Now, you might have asked yourself how did I know this awesome information about the flags for list. Over time, you may memorize some useful flags and there's always google. But there's also a command that we can use to view the command manual, or `man`, for short. Enter the following to view the manual for the list command: 
+Now, you might have asked yourself how did I know this awesome information about the flags for the list `ls` command. Over time, you may memorize some useful flags and there's always google. But there's also a command that we can use to view the command manual, or `man`, for short. Enter the following to view the manual for the list command: 
 
 ```
 man ls
@@ -341,7 +343,7 @@ Both methods output the same information. Choose your preferred method.
 
 
 > [!TIP] <br>
-> The man command and --help flag works for other commands we'll learn, too.
+> The `man` command and --help flag works for other commands we'll learn, too.
 
 ## 🎯 CLI command: pwd
 
@@ -357,9 +359,9 @@ pwd
 
 ![pwd](images/pwd.png)
 
-This is the **p**rint **w**orking **d**irectory, or `pwd` command, and is used to print where you are currently working within the file system. Common terminology refers to this as a path, the unique location of file or directory. 
+This is the **p**rint **w**orking **d**irectory, or `pwd` command, and is used to print where you are currently working within the file system. Common terminology refers to this as a path, the unique location of a file or directory within your file system. 
 
-pwd will always print the **absolute** path, starting at the root "/" directory.
+`pwd` will always print the **absolute** path, starting at the root "/" directory.
 
 So, let's break down this path:
 * We start at root "/"
@@ -372,7 +374,7 @@ Notice that in Linux, forward slashes are used to navigate the file system hiera
 /directory/directory/directory/
 ```
 
-pwd provides the directory path but we can also use paths to specify a file, too. 
+`pwd` provides the directory path but we can also use paths to specify a file, too. 
 
 ```
 /directory/directory/directory/file.txt
@@ -403,8 +405,8 @@ Both work, but using a relative path is generally easier when using commands.
 
 In summary:
 
-* pwd displays where you are currently located in the file system
-* The absolute path is the full path to your current working directory or a file **from root**
+* `pwd` displays where you are currently located in the file system
+* The absolute path is the full path to your current working directory or a file ** starting from root**
 * The relative path is a path relative to your **current working directory**
 * /Paths/are/provided/with/forward/slashes/
 * Remember the difference between **absolute** and **relative** because we will make use of paths from here on out.
@@ -445,15 +447,15 @@ cd resources
 
 ![cd_down](images/cd_down.png)
 
-To some extent, the cd command is equivalent to you double-clicking folders on your file explorer.
+To some extent, the `cd` command is equivalent to you double-clicking folders on your file explorer.
 
-You'll notice the command prompt shows we successfully navigated into resources. But, I followed the cd command with two commands we learned prior, ls and pwd, to look at the contents within resources and re-confirm our new working directory, respectively. We see that the resources directory contains 3 additional directories. 
+You'll notice the command prompt shows we successfully navigated into resources. But, I followed the `cd` command with two commands we learned prior, `ls` and `pwd`, to look at the contents within resources and re-confirm our new working directory, respectively. We see that the resources directory contains 3 additional directories. 
 
 It is common to refer to the navigation we just performed as "going down" because we are going down into directories relative to the hierarchal structure of the file system starting at root. 
 
-We can also go back, or up directories using the cd command. We also refer to this as parent directories. For example, intro_to_cli is the parent directory of resources because it is contained within intro_to_cli. Likewise, workspaces is the parent directory of intro_to_cli.
+We can also go back, or up directories using the `cd` command. We also refer to this as parent directories. For example, intro_to_cli is the parent directory of resources because it is contained within intro_to_cli. Likewise, workspaces is the parent directory of intro_to_cli.
 
-From resources, to navigate back to the parent directory, intro_to_cli, we use the following command to change one directory up:
+Within the resources directory as our current working directory, to navigate back to the parent directory, intro_to_cli, we use the following command to change one directory up:
 
 ```
 cd ..
@@ -461,7 +463,7 @@ cd ..
 
 ![cd_up](images/cd_up.png)
 
-The ".." refers to the parent directory. Again, succeeding the cd command, I used ls to list the contents of intro_to_cli to help reconfirm that our change directory command was successful. 
+The ".." refers to the parent directory. Again, succeeding the `cd` command, I used `ls` to list the contents of intro_to_cli to help reconfirm that our change directory command was successful. 
 
 I will mention this here since we're on the concept of dots. A single dot succeeding a command:
 
@@ -469,7 +471,7 @@ I will mention this here since we're on the concept of dots. A single dot succee
 cd .
 ```
 
-Represents the current working directory. It's like a way of saying, "here". It's not as useful with the cd command because you're already where you want to be, but we'll make use of this single dot later in the tutorial. 
+Represents the current working directory. It's like a way of saying, "here". It's not as useful with the `cd` command because you're already where you want to be, but we'll make use of this single dot later in the tutorial. 
 
 
 ### Concept checks and tips
@@ -489,18 +491,22 @@ cd /resources
 
 Because you're specifying at root with the forward slash. So while you're trying to change directory within intro_to_cli, the command is trying to find a resources directory at root, which doesn't exist. 
 
-List at root to confirm that:
+List at root to confirm that a resources directory does not exist:
 
 ```
 ls /
 ```
 ![list_root](images/list_root.png)
 
+> [!NOTE] <br>
+> Hypothetically, if /resources directory existed, then the above command, `cd /resources`, would work. <br>
+> But /resources != /workspaces/intro_to_cli/resources. These would be completely different directories.
+
 </details>
 
 <br>
 
-#### 2) You can traverse multiple directories at a time using the cd command. For example, say our current working directory is intro_to_cli and we want to navigate into the documentation directory that's located inside of the resources directory. We *could* perform the cd command in two consecutive steps:
+#### 2) You can traverse multiple directories at a time using the `cd` command. For example, say our current working directory is intro_to_cli and we want to navigate into the documentation directory that's located inside of the resources directory. We *could* perform the `cd` command in two consecutive steps:
 
 ```
 cd resources
@@ -518,7 +524,7 @@ cd ..
 
 ![cd_ts_back](images/cd_ts_back.png)
 
-But a more efficient way of navigating is using the cd command and then providing the relative path to navigate in one succinct step:
+But a more efficient way of navigating is using the `cd` command and then providing the relative path to navigate in one succinct step:
 
 ```
 cd resources/documentation
@@ -647,9 +653,9 @@ Navigates you to the same location as just typing:
 cd
 ``` 
 
-I only mean to cover this topic because you may accidentally enter cd and be navigated away from our base working directory (/workspaces/intro_to_cli).
+I only mean to cover this topic because you may accidentally enter `cd`, only, and be navigated away from our **base directory** (/workspaces/intro_to_cli).
 
-Don't panic! With the knowledge you gained so far, how would you navigate back to the base working directory?
+Don't panic! With the knowledge you gained so far, how would you navigate back to the **base directory**?
 
 <details>
 <summary>Reveal solution, here</summary>
@@ -674,7 +680,7 @@ is the root directory.
 </details>
 
 
-**Moving forward, I will use the term base directory to refer to the intro_to_cli directory for purposes of simplicity. So if the tutorial states, "perform this command while located in the base directory", I mean perform a command while you're in /workspaces/intro_to_cli/**
+**Moving forward, I will use the term base directory to refer to the intro_to_cli directory for purposes of simplicity. So if the tutorial states, "perform this command while located in the base directory", I mean make sure your current working directory is /workspaces/intro_to_cli/ before you execute the command**
 
 ## 📁 CLI command: mkdir
 
@@ -688,7 +694,7 @@ mkdir test_dir
 
 ![mkdir](images/mkdir.png)
 
-After this command I ran ls to look at the contents and we do indeed see the creation of a new directory called "test_directory". You should also see it on your file explorer pane on the left side bar (orange arrow).
+After this command I ran `ls` to look at the contents and we do indeed see the creation of a new directory called "test_directory". You should also see it on your file explorer pane on the left side bar (orange arrow).
 
 So this brings us to our discussion on naming files and directories. Notice there was another directory already present in the base directory named 'test dir'. 
 
@@ -753,7 +759,7 @@ This pertains to the bin directory. The scripts directory could not be made beca
 
 <br>
 
-Let's view our handy-dandy manual for mkdir and see if we can find some help:
+Let's view our handy-dandy manual `man` for `mkdir` and see if we can find some help:
 
 ```
 man mkdir
@@ -794,7 +800,7 @@ You should notice that the bin directory was made in the base directory and then
 
 ## 📃 CLI command: touch
 
-You can make new files, just like we made new directories in the previous command we learned. For new files, we use the `touch` command:
+We just learned that we can make new directories. I’m sure you’re wondering how to make new files. For new files, we use the `touch` command:
 
 ```
 touch test_file.txt
@@ -802,7 +808,7 @@ touch test_file.txt
 
 ![touch](images/touch.png)
 
-I also performed some additional commands proceeding and succeeding the touch command to show that file wasn't initially present and then confirm the creation of the file. We see that the file we just created is an empty file. And, we also confirm the creation of the file via the file explorer pane on the left side bar (orange arrow).
+I also performed some additional commands proceeding and succeeding the `touch` command to show that file wasn't initially present and then confirm the creation of the file. We see that the file we just created is an empty file. And, we also confirm the creation of the file via the file explorer pane on the left side bar (orange arrow).
 
 **Challenge: Using a relative path, create another test_file.txt in the documentation directory**
 
@@ -825,13 +831,13 @@ ls *
 
 command to recall where the documentation directory is. We see it present in the resources directory. 
 
-The touch command was then run, providing the relative path to the documentation directory followed by the file name, as shown as the main solution when this section was first revealed: 
+The `touch` command was then run, providing the relative path to the documentation directory followed by the file name, as shown as the solution at the top of this solution section when it was revealed: 
 
 ```
 touch resources/documentation/test_file.txt
 ```
 
-Lastly, the ls command was run with the relative path to the documentation directory to confirm creation of the new file:
+Lastly, the `ls` command was run with the relative path to the documentation directory to confirm creation of the new file:
 
 ```
 ls resources/documentation
@@ -845,7 +851,7 @@ ls resources/documentation
 
 ### Moving files
 
-While you're probably used to dragging and dropping to move things on file explore, we'll make use of the **m**o**v**e `mv` command to move a file. For this, we need to specify to key aspects after the move command. For example:
+While you're probably used to dragging and dropping to move things on file explore, we'll make use of the **m**o**v**e `mv` command to move a file. For this, we need to specify two key aspects after the move `mv` command. For example:
 
 ```
 mv file directory
@@ -867,7 +873,7 @@ If we run:
 ```
 ls
 ``` 
-in the base directory and
+in the base directory and:
 
 ```
 ls test_dir
@@ -878,7 +884,7 @@ we see that the file was successfully moved.
 ![mv_check](images/mv_check.png)
 
 >⚠️ **Caution:** Moving a file into a directory with a file containing the same name will automatically overwrite the file. <br>
->⚠️ **Caution:** There is no undo (ctrl+z) once this command executes.
+>⚠️ **Caution:** There is no undo (Ctrl+Z) once this command executes.
 
 
 For example, let's make a new file also called test_file.txt *in the base directory*:
@@ -900,7 +906,7 @@ mv test_file.txt test_dir/
 
 Notice how we had two files but now there is only one file in the test_dir directory. The original test_file.txt was just overwritten.
 
-**Files with the same name will automatically be overwritten with the mv command.**
+**Files with the same name will automatically be overwritten with the `mv` command.**
 
 However, there is flag we could add to prevent this from happening. How could you look into finding a way to stop an automated file overwrite? 
 
@@ -931,6 +937,9 @@ While in a directory of interest, you can use the move command as such:
 mv old_file_name.txt new_file_name.txt
 ```
 
+> [!NOTE] <br> 
+> Above is just an example code block for basic usage of the `mv` command. Do not run this command
+
 where the first input is the file name you want to change and the second input is the new name of the file.
 
 Change directory into test_dir:
@@ -947,20 +956,23 @@ mv test_file.txt new_file_name.txt
 
 ![mv_rename](images/mv_rename.png)
 
-I also ran the list command (ls) afterwards to confirm that the file name change was successful. 
+I also ran the list command `ls` afterwards to confirm that the file name change was successful. 
 
 ### Moving directories
 
-Okay, so far we learned that you can use the mv command to:
+Okay, so far we learned that you can use the `mv` command to:
 
-* mv a file into a different directory
+* move a file into a different directory
 * rename a file within the same directory
 
-And now, we'll learn that you can also use the move (mv) command to move a directory. This simply takes the form of:
+And now, we'll learn that you can also use the move `mv` command to move a directory. This simply takes the form of:
 
 ```
 mv directory_to_move directory_to_move_to
 ```
+
+> [!NOTE] <br> 
+> Above is just an example code block for basic usage of the `mv` command. Do not run this command
 
 where the first input is the directory that you want to move and the second input is the directory location where you want to move the first input to.
 
@@ -983,7 +995,7 @@ In this example, I:
 3. Moved the scripts directory, specified by a relative path, to the test_dir using the single dot ,"here", specification 
 4. Confirmed successful move
 
-**Recall that the single dot (.) is a way to specify the current working directory. At the time the command was run, I was located in test_dir so . equals /workspaces/intro_to_cli/test_dir**
+**Recall that the single dot, `.`, is a way to specify the current working directory. At the time the command was run, I was located in test_dir so `.` is equivalent to /workspaces/intro_to_cli/test_dir**
 
 *I showed you a solution*, not the only solution. Here's another way:
 
@@ -1010,10 +1022,10 @@ Similar to the move command, we need two inputs for the **c**o**p**y `cp` comman
 cp file_to_copy where_to_place_copy
 ```
 
-where the first input is the file we would like to copy and the second input is the location we want to place that copy. 
-
 > [!NOTE] <br>
 > Above is just an example code block for basic usage of the `cp` command. Do not run this command.
+
+where the first input is the file we would like to copy and the second input is the location we want to place that copy. 
 
 From the base directory, let's make a copy of the samplesheet.csv file and place it into the test_dir directory:
 
@@ -1029,7 +1041,7 @@ I also performed the:
 ls *
 ```
 
-command succeeding the copy (cp) command to confirm that:
+command succeeding the copy `cp` command to confirm that:
 1) samplesheet.csv is still present in the base directory
 2) And now a copy of that samplesheet.csv is now present in the test_dir directory
 
@@ -1048,6 +1060,11 @@ to
 ```
 
 The steps achieve this task are:
+
+> [!NOTE] <br>
+> Step 4 is the actual command we want to run. <br>
+> But this stepwise progression is to show you how we set up this command with tips we learned about path navigation.
+
 1) Start with the copy command and then use relative paths to specify the directory containing the files of interest:
 
 ```
@@ -1146,12 +1163,12 @@ Hopefully the versatility of using the wildcard is starting to make sense!
 
 <br>
 
-As you can see, we performed this with the list (ls) command. The wild card character can be used with a variety of commands including: 
+As you can see, we performed this with the list `ls` command. The wild card character can be used with a variety of commands including: 
 
-* ls 
-* mv
-* cp
-* rm
+* `ls` 
+* `mv`
+* `cp`
+* `rm`
 
 **Or, when we're running a bioinformatics program and we want to process all FASTQ files within a directory.**
 
@@ -1172,7 +1189,7 @@ Oops! We ran into an error and the command execution failed. It states that the 
 
 The "-r" flag stands for recursive and is required when copying directories because it is essentially telling your computer to copy the directory **and** everything inside it. 
 
-It failed without the "-r" flag because cp only works at a single level and because the resources/ directory contains contents, the "-r" flag is used to permit traversing the entire directory tree within resources/
+It failed without the "-r" flag because `cp` only works at a single level and because the resources/ directory contains contents, the "-r" flag is used to permit traversing the entire directory tree within resources/
 
 **Recall: exit the manual by just typing "q"**
 
@@ -1204,9 +1221,9 @@ where the input following the command specifies the file you want to remove.
 
 Within the base directory, let's go ahead and specify the samplesheet.csv file for deletion.
 
->⚠️ **Caution:** This action will delete all files (and directories) permanently. <br>
->⚠️ **Caution:** There is no recycle bin or undo (ctrl+z) when deleting via the CLI.
->⚠️ **Caution:** Always double check that you are deleting the correct content before executing the command
+> ⚠️ **Caution:** This action will delete all files (and directories) permanently. <br>
+> ⚠️ **Caution:** There is no recycle bin or undo (Ctrl+Z) when deleting via the CLI. <br>
+> ⚠️ **Caution:** Always double check that you are deleting the correct content before executing the command
 
 ```
 rm samplesheet.csv
@@ -1253,7 +1270,19 @@ rm -r 'test dir'/
 
 ![rm_dir_r](images/rm_dir_r.png)
 
-And we see that the directory is gone. The directory was empty, but it doesn't matter. You need to add the recursive flag with trying to delete (or copy) a directory.
+You'll be prompted a few times to make sure that you want to delete the directory. Just enter "yes" to the prompt:
+
+```
+y
+```
+
+a few times and we see that the directory is gone. 
+
+> [!NOTE] <br>
+> While this directory looked empty to you, it actually contained a [hidden file](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory). <br>
+> This is beyond the scope of the tutorial, and the workshop, but I added a link if you're interested in learning more. 
+
+You always need to add the recursive flag (-r) when trying to delete (or copy) a directory.
 
 </details>
 
@@ -1270,7 +1299,7 @@ rm -r test_dir/
 Okay, I give up. I cancelled the command with:
 
 ```
-ctrl + c
+Ctrl+C
 ```
 
 You see, each line was a prompt, asking if I wanted to delete a particular file or directory within the test_dir/:
@@ -1346,7 +1375,7 @@ less log.txt
 
 ![less](images/less.png)
 
-In contrast to cat, you'll notice the less command opens a full-screen terminal pager window that does not display the entire file. You start at the beginning of the file and can navigate with scroll. You can also search key words, for example, by entering the following: 
+In contrast to `cat`, you'll notice the `less` command opens a full-screen terminal pager window that does not display the entire file. You start at the beginning of the file and can navigate with scroll. You can also search key words, for example, by entering the following: 
 
 ```
 /STEP 4
@@ -1378,7 +1407,7 @@ head log.txt
 
 ![head](images/head.png)
 
-By default, the head command will display the first 10 lines of your file.
+By default, the `head` command will display the first 10 lines of your file.
 
 If you want to display more lines, the first 20 lines for example, use the -n flag followed by the number of lines:
 
@@ -1401,7 +1430,7 @@ tail log.txt
 ![tail](images/tail.png)
 
 > [!NOTE]
-> Tail also works with the -n # of lines flag as shown with the head command.
+> `tail` also works with the -n # of lines flag as shown with the `head` command.
 
 **Note, these are various methods to use commands to view a file. However, you're more than welcome to take advantage of the VS Code interface to view files, too. Click on the log.txt file on the left side bar panel to view the file via VS Code.**
 
@@ -1438,7 +1467,7 @@ This is a test file.
 Now, let's try to save our new file. Press:
 
 ```
-ctrl + x
+Ctrl+X
 ```
 
 To initiate exit. 
@@ -1455,7 +1484,7 @@ The final prompt allows us to name our file.
 
 ![nano_save](images/nano_save.png)
 
-We don't need to change the name. We already named it when we executed the nano command. Save the file by pressing the enter key ↩ and exit the editor. 
+We don't need to change the name. We already named it when we executed the `nano` command. Save the file by pressing the enter key ↩ and exit the editor. 
 
 Verify that your file has been created.
 
@@ -1480,7 +1509,7 @@ Success!
 > You can also edit files that have already been created.
 > Try editing the test_file.txt again, add a second line, save, and view the file.
 
-Where the nano editor really shines is when we want to create scripts to automate processes, as we'll see in the next section. 
+Where the `nano` editor really shines is when we want to create scripts to automate processes, as we'll see in the next section. 
 
 ## 🏃 CLI command: bash
 
@@ -1500,10 +1529,10 @@ Notice in the image above that I first looked at the contents of the script prio
 
 The command line prompt "$" will appear on a new line once the script is complete. However, we can also add another command within the script to reassure us the script completed. 
 
-> [!NOTE]
-> The .sh extension is just convention. Other file extensions are also compatible with running the bash command 
-> But, imagine one day someone will look at your code and try to understand how it functions.
-> Coding standards make reading code more streamlined and so the .sh extension tells others to look there for automated scripts
+> [!NOTE] <br>
+> The .sh extension is just convention. Other file extensions are also compatible with running the `bash` command. <br>
+> But, imagine one day someone will look at your code and try to understand how it functions. <br>
+> Coding standards make reading code more streamlined and the .sh extension tells others to look there for automated scripts.
 
 <br> 
 
@@ -1520,8 +1549,8 @@ Take some time to re-edit the script.sh file to achieve the following objectives
 > Start each command on a new line.
 
 > [!NOTE] <br>
-> I know that we just learned the nano command but take advantage of the VS Code interface to select the file from the file explorer window. <br>
-> Use the built-in text editor to edit this script.sh file.
+> I know that we just learned the `nano` command but take advantage of the VS Code interface to select the file from the file explorer window. <br>
+> Use the built-in text editor to edit this script.sh file. <br>
 > Even bioinformaticians like coding conveinence! 
 
 
@@ -1544,16 +1573,17 @@ echo "Script completed"
 
 ![script_solution](images/script_solution.png)
 
+> [!NOTE] <br>
+> Notice the hashed (#) lines in the image (orange arrows). <br>
+> The hash prevents the lines from being read and executed in the script. <br>
+> Use hash lines to provide a human-digestible comment on what your code is doing.
+
 <br>
 
 And showing this on the CLI:
 
 ![bash_script](images/bash_script.png)
 
-> [!NOTE]
-> Notice the hashed (#) lines in the image (orange arrows)
-> The hash prevents the lines from being read and executed in the script
-> Use hash lines to provide a human-digestible comment on what your code is doing
 
 </details>
 
@@ -1580,6 +1610,7 @@ If you do not see this as an option, try to search for "> ask" in the search bar
 
 ![find_ask](images/find_ask.png)
 
+The `?` icon will confirm that you are using the ask feature and not the agent feature. 
 
 2. Set the model to Claude
 
@@ -1601,6 +1632,11 @@ Things to note:
 2) Click on script.sh in the file explorer pane to add the file to the chat. Now, when you ask the AI assistant your question, it will answer it in the context of the contents of this file you specified.
 3) Provide question to the AI agent and enter
 
+And we see the following output:
+
+![ai_prompt_result](images/ai_prompt_result.png)
+
+Providing a suggestion to use the `echo` command to "echo" a completion message at the end of the script. 
 
 > [!NOTE]
 > This echo line works in the sense that it outputs a message, but it's really not an optimal solution.
@@ -1617,6 +1653,7 @@ fi
 
 I encourage you make use of the AI agent to better understand why this is a better solution. Then, really challenge yourself by trying to understand how this "if statement" works and then implement and run it in your script.
 
+## Word of caution with using AI to assist in your work
 
 >⚠️ **Caution:** Always consult your organization's policy on AI before using it for your own work and data. <br>
 
@@ -1626,9 +1663,15 @@ For example, GitHub annouced the following:
 
 Meaning, anything you type and data you use to interact with GitHub copilot will be shared with GitHub to better train their AI models **unless you choose to opt out**. I recommend opting out to err on the side of caution. Remember, this tutorial is just toy data that we're using in a public setting. **You have to be much more cautious when using AI with data containing PII/PHI and confidential information related to your institution.**
 
+## Final notes
+
+Congratulations! You have learned some vital commands that bioinformaticians use every day in their work. Familiarizing yourself with these commands prior to the in-person workshop will help you immensely. 
+
 > [!NOTE] <br>
 > You will not need to memorize all of these commands in preparation for the workshop.
 > The in-person workshop contains tutorials and format similar to this CLI workshop.
+
+It's more important that you understand the concepts and the "whys" compared to memorizing every detail of this tutorial. 
 
 > [!TIP] <br>
 > Once you feel more comfortable with the concepts of the command line, you can save time via copying and pasting from code blocks embedded within the tutorial.
@@ -1655,7 +1698,7 @@ Navigate to your codespace and press Ctrl+V to paste. You'll be prompted to allo
 
 <br>
 
-![clipboard_allow](images/codeblock_allow.png)
+![clipboard_allow](images/clipboard_allow.png)
 
 <br>
 
@@ -1666,7 +1709,7 @@ Finally, try to paste, again:
 
 <br>
 
-![clipboard_paste](images/codeblock_paste.png)
+![clipboard_paste](images/clipboard_paste.png)
 
 <br>
 
@@ -1695,7 +1738,7 @@ Once that is used, you will be charged or prevented from accessing codespaces if
 
 Let's delete this codespace to make sure that we don't hit this quota.
 
-* Close out of your codespace web browswer tab. From the Github page, select the menu:
+* Close out of your codespace web browswer tab. And now, from your Github page, select the menu:
 
 ![github_menu](images/github_menu.png)
 
@@ -1703,10 +1746,12 @@ Let's delete this codespace to make sure that we don't hit this quota.
 
 ![github_codespaces](images/github_codespaces.png)
 
-* Select the "more options" icon for your codespace session and then select delete. Confirm deletion.
+* You'll be navigated to a new screen displaying your codespace. Select the "more options" icon for your codespace session and then select delete. Confirm deletion.
 
 ![stop_codespace](images/stop_codespace.png)
 
+
+## Important note
 
 > [!NOTE] <br>
 > **You will need to have free quota available for the in-person workshop.** <br>
@@ -1720,7 +1765,7 @@ This training module was built and is maintained by the Genomics Analysis Unit a
 
 
 ## ⚠️ Disclaimer
-This repository is not a source of government records but is intended to increase collaboration and collaborative potential on public health related projects. Materials and information in this repository are intended to share information and collaboratively develop analysis workflows. 
+This repository is not a source of government records but is intended to increase collaboration and collaborative potential on public health related projects. Materials and information in this repository are intended to share information and collaboratively develop a knowledge base of CLI. 
 
 The workflow reflects the current understanding of the CLI and may be updated as needed and pursuant to further analysis and review. No warranty, expressed or implied, is made by MDHHS Bureau of Laboratories as to the functionality of the software and related material nor shall the fact of release constitute any such warranty. Furthermore, the software is released on condition that the MDHHS Bureau of Laboratories shall not be held liable for any damages resulting from its authorized or unauthorized use. 
 
