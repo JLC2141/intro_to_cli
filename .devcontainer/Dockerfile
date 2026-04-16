@@ -11,6 +11,7 @@ RUN yes | DEBIAN_FRONTEND=noninteractive unminimize \
         wget \
         curl \
         git \
+        tree \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up a non-root user for development
