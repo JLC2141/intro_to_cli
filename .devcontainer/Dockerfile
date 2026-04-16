@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:24.04 
 
 # Install man pages
 RUN yes | DEBIAN_FRONTEND=noninteractive unminimize \
@@ -8,6 +8,8 @@ RUN yes | DEBIAN_FRONTEND=noninteractive unminimize \
         manpages-dev \
         less \
         nano \
+        wget \
+        curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up a non-root user for development
