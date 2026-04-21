@@ -290,7 +290,7 @@ Two additional things to note before we move to the next command:
 clear
 ```
 
-Technically, this is also a command but it is just used to terminal application interface.
+Technically, this is also a command but it is just used to clear the terminal application interface.
 
 2) It's okay to type and enter incorrect commands. You might receive a note that the command is not found. For example, try:
 
@@ -298,7 +298,7 @@ Technically, this is also a command but it is just used to terminal application 
 sl
 ```
 
-However, if you ever want to cancel your current prompt and generate a new prompt line without entering, just enter:
+However, if you ever want to cancel your current prompt and generate a new prompt line without entering, perform the following:
 
 ```
 Ctrl+C
@@ -398,7 +398,7 @@ We are specifying a relative path relative to intro_to_cli. **Relative paths do 
 ls /workspaces/intro_to_cli/resources
 ```
 
-Both work, but using a relative path is generally easier when using commands.
+Both work, but using a relative path is generally more convenient.
 
 > [!NOTE] <br>
 > The last forward slash when we specify a path is optional
@@ -406,14 +406,14 @@ Both work, but using a relative path is generally easier when using commands.
 In summary:
 
 * `pwd` displays where you are currently located in the file system
-* The absolute path is the full path to your current working directory or a file ** starting from root**
+* The absolute path is the full path to your current working directory or a file **starting from root**
 * The relative path is a path relative to your **current working directory**
 * /Paths/are/provided/with/forward/slashes/
 * Remember the difference between **absolute** and **relative** because we will make use of paths from here on out.
 
 <br>
 
-> **Challenge: With what we learned so far, can you use a relative path to list all the contents within resources to reveal what is inside those directories?**
+> **Challenge: With what we learned so far, can you use a relative path to list all the contents within the resources directory to reveal what is inside those directories therein?**
 
 <br>
 
@@ -449,7 +449,7 @@ cd resources
 
 To some extent, the `cd` command is equivalent to you double-clicking folders on your file explorer.
 
-You'll notice the command prompt shows we successfully navigated into resources. But, I followed the `cd` command with two commands we learned prior, `ls` and `pwd`, to look at the contents within resources and re-confirm our new working directory, respectively. We see that the resources directory contains 3 additional directories. 
+You'll notice the command prompt shows we successfully navigated into the resources directory. But, I followed the `cd` command with two commands we learned prior, `ls` and `pwd`, to look at the contents within resources and reconfirm our new working directory, respectively. We see that the resources directory contains 3 additional directories. 
 
 It is common to refer to the navigation we just performed as "going down" because we are going down into directories relative to the hierarchal structure of the file system starting at root. 
 
@@ -562,7 +562,13 @@ cd documentation/
 
 Tabbing makes path navigation faster. Use it so you don't have to type everything out. 
 
-Navigate back to the intro_to_cli directory, then try tabbing out to achieve the following path:
+Navigate back to the intro_to_cli directory:
+
+```
+cd ..
+```
+
+and then try tabbing out to achieve the following path:
 
 ```
 cd resources/documentation
@@ -851,7 +857,7 @@ ls resources/documentation
 
 ### Moving files
 
-While you're probably used to dragging and dropping to move things on file explore, we'll make use of the **m**o**v**e `mv` command to move a file. For this, we need to specify two key aspects after the move `mv` command. For example:
+While you're probably used to dragging and dropping to move things on file explorer, we'll make use of the **m**o**v**e `mv` command to move a file. For this, we need to specify two key aspects after the move `mv` command. For example:
 
 ```
 mv file directory
@@ -980,7 +986,7 @@ With this knowledge:
 
 Take a moment to: 
 1) Move the bin/ directory into test_dir/
-2) Then, move the scripts/ directory into test_dir/
+2) Then, move the scripts/ directory (which is inside of the bin/ directory) into test_dir/
 
 **Recall, the scripts directory is inside of the bin directory**
 
