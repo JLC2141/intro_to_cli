@@ -29,7 +29,6 @@ This introduction module introduces you to CLI for purposes of:
 * Navigation and directory management
 * File operations
 * Viewing files
-* External file retrieval
 * Editing files
 * Starting a bash script
 
@@ -187,7 +186,7 @@ Type this into the command line and press enter ↩
 
 ![list](images/list.png)
 
-This lists the contents within the intro_to_cli directory and lists the exact same contents you see in the file explorer on the left pane (except for hidden, should I mention that?.) Directories will typically be highlighted or colored while files are not. 
+This lists the contents within the intro_to_cli directory and lists the exact same contents you see in the file explorer on the left pane. Directories will typically be highlighted or colored while files are not. 
 
 <br>
 
